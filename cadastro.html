@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - GymMind</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .logo-brain {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M20 35c0-8 6-15 15-15s15 7 15 15v5h-5c-3 0-5-2-5-5s2-5 5-5 5 2 5 5-2 5-5 5h-5v20c0 8-7 15-15 15s-15-7-15-15V35z' fill='%234f46e5'/%3E%3Cpath d='M80 35c0-8-6-15-15-15s-15 7-15 15v5h5c3 0 5-2 5-5s-2-5-5-5-5 2-5 5 2 5 5 5h5v20c0 8 7 15 15 15s15-7 15-15V35z' fill='%234f46e5'/%3E%3C/svg%3E") center/contain no-repeat;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .input-modern {
+            transition: all 0.3s ease;
+        }
+
+        .input-modern:focus {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.2);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(99, 102, 241, 0.4);
+        }
+
+        .password-strength {
+            height: 4px;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .error-message, .success-message {
+            display: none;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-br from-slate-50 to-blue-50">
+    <div class="min-h-screen flex items-center justify-center p-6 py-12">
+        <div class="w-full max-w-md">
+            <!-- Logo e Título -->
+            <div class="text-center mb-8 floating-element">
+                <div class="logo-brain mx-auto mb-4" style="width: 60px; height: 60px;"></div>
+                <h1 class="text-4xl font-black mb-2">
+                    <span class="text-indigo-600">Gym</span><span class="text-purple-600">Mind</span>
+                </h1>
+                <p class="text-slate-600 text-lg font-medium">Crie sua conta gratuita</p>
+            </div>
+
+            <!-- Card de Cadastro -->
+            <div class="glass-card rounded-3xl shadow-2xl p-8">
+                <h2 class="text-2xl font-bold text-slate-800 mb-6">Começar agora</h2>
+
+                <!-- Mensagem de Erro -->
+                <div id="errorMessage" class="error-message bg-red-50 border-2 border-red-200 rounded-xl p-4 mb-6">
+                    <div class="flex items-center gap-3">
+                        <span class="text-2xl">⚠️</span>
+                        <p class="text-red-700 font-medium" id="errorText"></p>
+                    </div>
+                </div>
+
+                <!-- Mensagem de Sucesso -->
+                <div id="successMessage" class="success-message bg-green-50 border-2 border-green-200 rounded-xl p-4 mb-6">
+                    <div class="flex items-center gap-3">
+                        <span class="text-2xl">✅</span>
+                        <p class="text-green-700 font-medium">Conta criada com sucesso! Redirecionando...</p>
+                    </div>
+                </div>
+
+                <!-- Formulário -->
+                <form id="registerForm" class="space-y-5">
+                    <div>
+                        <label for="nome" class="block text-sm font-bold text-slate-700 mb-2">Nome Completo</label>
+                        <input 
+                            type="text" 
+                            id="nome" 
+                            required
+                            placeholder="Seu nome completo"
+                            class="input-modern w-full border-2 border-slate-200 rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-4 focus:ring-indigo-200 focus:border-indigo-500 bg-white/80 backdrop-blur-sm font-medium">
+                    </div>
+
+                    <div>
+                        <label for="email" class="block text-sm font-bold text-slate-700 mb-2">Email</label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            required
+                            placeholder="seu@email.com"
+                            class="input-modern w-full border-2 border-slate-200 rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-4 focus:ring-indigo-200 focus:border-indigo-500 bg-white/80 backdrop-blur-sm font-medium">
+                    </div>
+
+                    <div>
+                        <label for="password" class="block text-sm font-bold text-slate-700 mb-2">Senha</label>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            required
+                            placeholder="Mínimo 6 caracteres"
+                            class="input-modern w-full border-2 border-slate-200 rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-4 focus:ring-indigo-200 focus:border-indigo-500 bg-white/80 backdrop-blur-sm font-medium">
+                        
+                        <!-- Indicador de força da senha -->
+                        <div class="mt-2">
+                            <div class="password-strength bg-slate-200" id="passwordStrength"></div>
+                            <p class="text-xs text-slate-600 mt-1 font-medium" id="strengthText">Digite uma senha</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="confirmPassword" class="block text-sm font-bold text-slate-700 mb-2">Confirmar Senha</label>
+                        <input 
+                            type="password" 
+                            id="confirmPassword" 
+                            required
+                            placeholder="Digite a senha novamente"
+                            class="input-modern w-full border-2 border-slate-200 rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-4 focus:ring-indigo-200 focus:border-indigo-500 bg-white/80 backdrop-blur-sm font-medium">
+                    </div>
+
+                    <div class="flex items-start">
+                        <input type="checkbox" id="terms" required class="mt-1 w-4 h-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500">
+                        <label for="terms" class="ml-2 text-sm text-slate-600">
+                            Concordo com os <a href="#" class="text-indigo-600 font-bold hover:text-indigo-700">Termos de Uso</a> e <a href="#" class="text-indigo-600 font-bold hover:text-indigo-700">Política de Privacidade</a>
+                        </label>
+                    </div>
+
+                    <button 
+                        type="submit" 
+                        id="registerBtn"
+                        class="btn-primary w-full text-white px-6 py-4 rounded-xl text-lg font-bold transition-all duration-300">
+                        <span id="btnText">Criar Conta</span>
+                        <span id="btnLoading" class="hidden">
+                            <svg class="animate-spin h-5 w-5 inline-block mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                            Criando conta...
+                        </span>
+                    </button>
+                </form>
+
+                <!-- Linha divisória -->
+                <div class="relative my-6">
+                    <div class="absolute inset-0 flex items-center">
+                        <div class="w-full border-t-2 border-slate-200"></div>
+                    </div>
+                    <div class="relative flex justify-center text-sm">
+                        <span class="px-4 bg-white text-slate-500 font-medium">Já tem uma conta?</span>
+                    </div>
+                </div>
+
+                <!-- Botão Login -->
+                <a href="login.html" class="block w-full text-center border-2 border-indigo-600 text-indigo-600 px-6 py-3 rounded-xl text-base font-bold hover:bg-indigo-50 transition-all duration-300">
+                    Fazer Login
+                </a>
+            </div>
+
+            <!-- Link para voltar -->
+            <div class="text-center mt-6">
+                <a href="index.html" class="text-slate-600 hover:text-indigo-600 font-medium transition">
+                    ← Voltar para início
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Elementos flutuantes decorativos -->
+    <div class="fixed top-20 right-20 w-32 h-32 bg-indigo-300/20 rounded-full blur-3xl floating-element"></div>
+    <div class="fixed bottom-32 left-10 w-24 h-24 bg-purple-300/20 rounded-full blur-3xl floating-element" style="animation-delay: -2s;"></div>
+
+    <script>
+        // Configuração da API (ALTERAR PARA SUA URL)
+        const API_BASE_URL = 'http://localhost:3000/api';
+
+        // Elementos do DOM
+        const registerForm = document.getElementById('registerForm');
+        const registerBtn = document.getElementById('registerBtn');
+        const btnText = document.getElementById('btnText');
+        const btnLoading = document.getElementById('btnLoading');
+        const errorMessage = document.getElementById('errorMessage');
+        const successMessage = document.getElementById('successMessage');
+        const errorText = document.getElementById('errorText');
+        const passwordInput = document.getElementById('password');
+        const passwordStrength = document.getElementById('passwordStrength');
+        const strengthText = document.getElementById('strengthText');
+
+        // Verificar se já está logado
+        document.addEventListener('DOMContentLoaded', function() {
+            const token = localStorage.getItem('gymMindToken');
+            if (token) {
+                window.location.href = 'dietas.html';
+            }
+        });
+
+        // Verificar força da senha em tempo real
+        passwordInput.addEventListener('input', function() {
+            const password = this.value;
+            const strength = calculatePasswordStrength(password);
+            
+            updatePasswordStrength(strength);
+        });
+
+        function calculatePasswordStrength(password) {
+            let strength = 0;
+            
+            if (password.length >= 6) strength += 1;
+            if (password.length >= 10) strength += 1;
+            if (/[a-z]/.test(password) && /[A-Z]/.test(password)) strength += 1;
+            if (/\d/.test(password)) strength += 1;
+            if (/[^a-zA-Z\d]/.test(password)) strength += 1;
+            
+            return strength;
+        }
+
+        function updatePasswordStrength(strength) {
+            const colors = ['#ef4444', '#f59e0b', '#eab308', '#84cc16', '#22c55e'];
+            const texts = ['Muito fraca', 'Fraca', 'Média', 'Boa', 'Forte'];
+            const widths = ['20%', '40%', '60%', '80%', '100%'];
+            
+            if (strength > 0) {
+                passwordStrength.style.backgroundColor = colors[strength - 1];
+                passwordStrength.style.width = widths[strength - 1];
+                strengthText.textContent = texts[strength - 1];
+            } else {
+                passwordStrength.style.backgroundColor = '#e5e7eb';
+                passwordStrength.style.width = '0%';
+                strengthText.textContent = 'Digite uma senha';
+            }
+        }
+
+        // Função para mostrar erro
+        function showError(message) {
+            errorText.textContent = message;
+            errorMessage.style.display = 'block';
+            successMessage.style.display = 'none';
+            
+            setTimeout(() => {
+                errorMessage.style.display = 'none';
+            }, 5000);
+        }
+
+        // Função para mostrar sucesso
+        function showSuccess() {
+            successMessage.style.display = 'block';
+            errorMessage.style.display = 'none';
+        }
+
+        // Função para mostrar loading
+        function setLoading(loading) {
+            if (loading) {
+                btnText.classList.add('hidden');
+                btnLoading.classList.remove('hidden');
+                registerBtn.disabled = true;
+                registerBtn.style.opacity = '0.7';
+            } else {
+                btnText.classList.remove('hidden');
+                btnLoading.classList.add('hidden');
+                registerBtn.disabled = false;
+                registerBtn.style.opacity = '1';
+            }
+        }
+
+        // Submit do formulário
+        registerForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const nome = document.getElementById('nome').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const terms = document.getElementById('terms').checked;
+
+            // Validações
+            if (!nome || !email || !password || !confirmPassword) {
+                showError('Por favor, preencha todos os campos');
+                return;
+            }
+
+            if (nome.length < 3) {
+                showError('Nome deve ter pelo menos 3 caracteres');
+                return;
+            }
+
+            if (!validateEmail(email)) {
+                showError('Por favor, insira um email válido');
+                return;
+            }
+
+            if (password.length < 6) {
+                showError('A senha deve ter pelo menos 6 caracteres');
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                showError('As senhas não coincidem');
+                return;
+            }
+
+            if (!terms) {
+                showError('Você deve aceitar os Termos de Uso');
+                return;
+            }
+
+            setLoading(true);
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/auth/register`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ nome, email, password, confirmPassword })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.success) {
+                    // Salvar token e dados do usuário
+                    localStorage.setItem('gymMindToken', data.token);
+                    localStorage.setItem('gymMindUser', JSON.stringify(data.user || { nome, email }));
+                    
+                    // Mostrar sucesso
+                    showSuccess();
+                    
+                    // Redirecionar após 2 segundos
+                    setTimeout(() => {
+                        window.location.href = 'dietas.html';
+                    }, 2000);
+                } else {
+                    throw new Error(data.message || 'Erro ao criar conta');
+                }
+            } catch (error) {
+                console.error('Erro:', error);
+                showError(error.message || 'Erro ao conectar com o servidor. Tente novamente.');
+                setLoading(false);
+            }
+        });
+
+        // Função para validar email
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+    </script>
+</body>
+</html>

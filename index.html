@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GymMind - Sua Dieta Personalizada</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Animações personalizadas */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.4); }
+            50% { box-shadow: 0 0 40px rgba(99, 102, 241, 0.8); }
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce-in {
+            0% { transform: scale(0.9); opacity: 0; }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Hero Gradient com padrão */
+        .hero-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-gradient::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.08'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            animation: float 20s infinite linear;
+        }
+
+        /* Logo com animação */
+        .logo-brain {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border-radius: 12px;
+            position: relative;
+            animation: pulse-glow 3s infinite;
+        }
+
+        .logo-brain::before {
+            content: '🧠';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+        }
+
+        /* Cards modernos */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Itens de refeição com mais personalidade */
+        .meal-item {
+            background: linear-gradient(145deg, #ffffff, #f8fafc);
+            border: 3px solid transparent;
+            border-radius: 20px;
+            padding: 24px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 700;
+            color: #1e293b;
+            position: relative;
+            overflow: hidden;
+            font-size: 16px;
+        }
+
+        .meal-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.15), transparent);
+            transition: left 0.6s;
+        }
+
+        .meal-item:hover {
+            background: linear-gradient(145deg, #f1f5f9, #e2e8f0);
+            border-color: #818cf8;
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+        }
+
+        .meal-item:hover::before {
+            left: 100%;
+        }
+
+        .meal-item.selected {
+            background: linear-gradient(145deg, #eef2ff, #ddd6fe);
+            border-color: #6366f1;
+            color: #4338ca;
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 25px 50px rgba(99, 102, 241, 0.3);
+            animation: bounce-in 0.5s;
+        }
+
+        .meal-item.selected::after {
+            content: '✓';
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+        }
+
+        /* Barra de progresso moderna */
+        .progress-bar {
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 9999px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899);
+            border-radius: 9999px;
+            transition: width 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0) 100%);
+            animation: shimmer 2s infinite;
+        }
+
+        /* Inputs modernos */
+        .modern-input {
+            border: 3px solid #e2e8f0;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .modern-input:focus {
+            outline: none;
+            border-color: #6366f1;
+            box-shadow: 0 8px 24px rgba(99, 102, 241, 0.15);
+            transform: translateY(-2px);
+        }
+
+        /* Select customizado */
+        .custom-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236366f1' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1.5rem;
+            padding-right: 3rem;
+        }
+
+        /* Range slider customizado */
+        .custom-range {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 10px;
+            border-radius: 5px;
+            background: linear-gradient(to right, #e2e8f0 0%, #e2e8f0 100%);
+            outline: none;
+        }
+
+        .custom-range::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+            transition: all 0.3s;
+        }
+
+        .custom-range::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6);
+        }
+
+        .custom-range::-moz-range-thumb {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+            transition: all 0.3s;
+        }
+
+        /* Botões primários */
+        .btn-primary {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.5s;
+        }
+
+        .btn-primary:hover::before {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.3);
+        }
+
+        /* Card de treino */
+        .training-card {
+            background: linear-gradient(145deg, #fefbff, #f3f4f6);
+            border-radius: 24px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            border: 2px solid #e5e7eb;
+            transition: all 0.3s;
+        }
+
+        .training-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.12);
+            border-color: #c7d2fe;
+        }
+
+        /* Checkbox customizado */
+        .custom-checkbox {
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border: 3px solid #e2e8f0;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .custom-checkbox:checked {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border-color: #6366f1;
+        }
+
+        .custom-checkbox:checked::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        /* Animação de entrada */
+        .fade-in-up {
+            animation: slideIn 0.6s ease-out forwards;
+        }
+
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+        .stagger-5 { animation-delay: 0.5s; }
+
+        /* Scrollbar customizada */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #6366f1, #8b5cf6);
+            border-radius: 6px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #4f46e5, #7c3aed);
+        }
+
+        /* Estilo do botão de navegação com borda */
+        .nav-btn {
+            border: 2px solid #6366f1;
+            padding: 8px 24px;
+            border-radius: 12px;
+            transition: all 0.3s;
+        }
+
+        .nav-btn:hover {
+            background: #6366f1;
+            color: white;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-50 to-indigo-50">
+    <!-- Header fixo com navegação completa -->
+    <header class="fixed top-0 w-full z-50 glass-card transition-all duration-300">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="logo-brain"></div>
+                <span class="text-2xl font-black bg-gradient-to-r from-indigo-600 to-purple-600 text-transparent bg-clip-text">GymMind</span>
+            </div>
+            <nav class="hidden md:flex items-center gap-8">
+                <a href="index.html" class="font-bold text-slate-700 hover:text-indigo-600 transition-colors">Home</a>
+                <a href="dietas.html" class="font-bold text-slate-700 hover:text-indigo-600 transition-colors">Dietas</a>
+                <a href="sobre.html" class="font-bold text-slate-700 hover:text-indigo-600 transition-colors">Sobre</a>
+                <a href="perfil.html" class="font-bold text-slate-700 hover:text-indigo-600 transition-colors">Perfil</a>
+                <button onclick="handleLogout()" class="nav-btn font-bold text-indigo-600 hover:bg-indigo-600 hover:text-white transition-all">
+                    Sair
+                </button>
+            </nav>
+            
+            <!-- Menu Mobile -->
+            <button id="mobileMenuBtn" class="md:hidden text-slate-700">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+        
+        <!-- Menu Mobile Dropdown -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-gray-200">
+            <div class="container mx-auto px-4 py-4 flex flex-col gap-4">
+                <a href="index.html" class="font-bold text-slate-700 hover:text-indigo-600">Home</a>
+                <a href="dietas.html" class="font-bold text-slate-700 hover:text-indigo-600">Dietas</a>
+                <a href="sobre.html" class="font-bold text-slate-700 hover:text-indigo-600">Sobre</a>
+                <a href="perfil.html" class="font-bold text-slate-700 hover:text-indigo-600">Perfil</a>
+                <button onclick="handleLogout()" class="nav-btn font-bold text-indigo-600 text-left">
+                    Sair
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-gradient min-h-screen flex items-center justify-center relative mt-16">
+        <div class="container mx-auto px-4 text-center relative z-10">
+            <h1 class="text-6xl md:text-8xl font-black text-white mb-8 fade-in-up">
+                Sua Dieta<br/>
+                <span class="text-yellow-300">Personalizada</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-white/90 mb-12 max-w-2xl mx-auto fade-in-up stagger-1">
+                🧠 Inteligência + 💪 Resultado = Seu novo corpo dos sonhos
+            </p>
+            <a href="#form" class="inline-block btn-primary text-white px-12 py-6 rounded-full text-xl font-bold fade-in-up stagger-2">
+                Começar Agora →
+            </a>
+        </div>
+    </section>
+
+    <!-- Formulário Principal -->
+    <section id="form" class="py-20">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-black text-slate-800 mb-4">Vamos Criar Seu Plano</h2>
+                <p class="text-xl text-slate-600">Preencha com seus dados e preferências</p>
+            </div>
+
+            <!-- Barra de Progresso -->
+            <div class="max-w-4xl mx-auto mb-12">
+                <div class="progress-bar">
+                    <div id="progressBar" class="progress-bar-fill" style="width: 0%"></div>
+                </div>
+                <div class="flex justify-between mt-4">
+                    <span class="text-sm font-bold text-slate-600">Início</span>
+                    <span id="progressText" class="text-sm font-bold text-indigo-600">0%</span>
+                    <span class="text-sm font-bold text-slate-600">Completo</span>
+                </div>
+            </div>
+
+            <!-- Formulário -->
+            <div class="max-w-6xl mx-auto space-y-8">
+                <!-- Informações Básicas -->
+                <div class="glass-card rounded-3xl p-8">
+                    <h3 class="text-3xl font-black text-slate-800 mb-8 flex items-center gap-3">
+                        <span class="text-4xl">👤</span> Informações Básicas
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-2">Nome Completo</label>
+                            <input type="text" id="nome" class="modern-input w-full rounded-xl px-4 py-3" placeholder="Seu nome">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-2">Idade</label>
+                            <input type="number" id="idade" class="modern-input w-full rounded-xl px-4 py-3" placeholder="Sua idade">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-2">Peso (kg)</label>
+                            <input type="number" id="peso" class="modern-input w-full rounded-xl px-4 py-3" placeholder="Ex: 70">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-2">Altura (cm)</label>
+                            <input type="number" id="altura" class="modern-input w-full rounded-xl px-4 py-3" placeholder="Ex: 175">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-2">Gênero</label>
+                            <select id="genero" class="modern-input custom-select w-full rounded-xl px-4 py-3">
+                                <option value="">Selecione</option>
+                                <option value="masculino">Masculino</option>
+                                <option value="feminino">Feminino</option>
+                                <option value="outro">Outro</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-2">Objetivo Principal</label>
+                            <select id="objetivo" class="modern-input custom-select w-full rounded-xl px-4 py-3">
+                                <option value="">Selecione seu objetivo</option>
+                                <option value="emagrecer">🔥 Emagrecer</option>
+                                <option value="ganhar-massa">💪 Ganhar Massa</option>
+                                <option value="definir">✨ Definir</option>
+                                <option value="manter">⚖️ Manter Peso</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seleção de Refeições -->
+                <div class="glass-card rounded-3xl p-8">
+                    <h3 class="text-3xl font-black text-slate-800 mb-8 flex items-center gap-3">
+                        <span class="text-4xl">🍽️</span> Monte Suas Refeições
+                    </h3>
+
+                    <!-- Café da Manhã -->
+                    <div class="mb-8">
+                        <h4 class="text-xl font-bold text-slate-700 mb-4">☕ Café da Manhã</h4>
+                        <div id="cafe" class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <!-- Items serão adicionados via JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Almoço -->
+                    <div class="mb-8">
+                        <h4 class="text-xl font-bold text-slate-700 mb-4">🍴 Almoço</h4>
+                        <div id="almoco" class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <!-- Items serão adicionados via JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Lanche da Tarde -->
+                    <div class="mb-8">
+                        <h4 class="text-xl font-bold text-slate-700 mb-4">🌅 Lanche da Tarde</h4>
+                        <div id="lanche-tarde" class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <!-- Items serão adicionados via JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Jantar -->
+                    <div class="mb-8">
+                        <h4 class="text-xl font-bold text-slate-700 mb-4">🌙 Jantar</h4>
+                        <div id="jantar" class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <!-- Items serão adicionados via JavaScript -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Opção de Incluir Treino -->
+                <div class="glass-card rounded-3xl p-8">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-4">
+                            <span class="text-4xl">💪</span>
+                            <div>
+                                <h3 class="text-2xl font-black text-slate-800">Incluir Plano de Treino?</h3>
+                                <p class="text-slate-600">Vamos criar uma rotina de exercícios personalizada</p>
+                            </div>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" id="incluirTreino" class="sr-only peer">
+                            <div class="w-20 h-10 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-10 peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-9 after:w-9 after:transition-all peer-checked:bg-gradient-to-r peer-checked:from-indigo-600 peer-checked:to-purple-600"></div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Seção de Treino (inicialmente oculta) -->
+                <div id="trainingSection" class="hidden space-y-8">
+                    <!-- Informações de Treino -->
+                    <div class="training-card p-8">
+                        <div class="flex items-center gap-4 mb-6 pb-4 border-b-2 border-indigo-100">
+                            <div class="w-14 h-14 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center text-3xl shadow-lg">
+                                🏋️
+                            </div>
+                            <div>
+                                <h4 class="text-2xl font-black text-slate-800">Seu Perfil de Treino</h4>
+                                <p class="text-slate-600 mt-1 font-semibold">Como você treina hoje?</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-6">
+                            <div>
+                                <label class="block text-base font-bold text-slate-700 mb-3">Frequência de exercícios</label>
+                                <select id="rotinaTreino" class="modern-input custom-select w-full rounded-xl px-6 py-4 bg-white font-semibold">
+                                    <option value="">Selecione sua rotina</option>
+                                    <option value="sedentario">😴 Sedentário (nenhum exercício)</option>
+                                    <option value="leve">🚶 Leve (1-3x por semana)</option>
+                                    <option value="moderado">🏃 Moderado (3-5x por semana)</option>
+                                    <option value="intenso">💪 Intenso (6-7x por semana)</option>
+                                    <option value="muito-intenso">🔥 Muito Intenso (2x por dia)</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-base font-bold text-slate-700 mb-3">Local de treino</label>
+                                <select id="localTreino" class="modern-input custom-select w-full rounded-xl px-6 py-4 bg-white font-semibold">
+                                    <option value="">Onde você treina?</option>
+                                    <option value="academia">🏋️ Academia</option>
+                                    <option value="casa">🏠 Em casa</option>
+                                    <option value="parque">🌳 Parque/Ar livre</option>
+                                    <option value="misto">🔄 Misto (academia + casa)</option>
+                                    <option value="nao-treino">❌ Não treino ainda</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-base font-bold text-slate-700 mb-3">Experiência com treinos (meses)</label>
+                                <input type="range" id="experienciaTreino" class="custom-range" min="0" max="60" value="0">
+                                <div class="flex justify-between text-xs text-slate-500 mt-2 font-semibold">
+                                    <span>Iniciante</span>
+                                    <span>Intermediário</span>
+                                    <span>Avançado</span>
+                                </div>
+                                <div id="experienceValue" class="text-center font-black text-indigo-600 text-xl mt-4">🆕 Iniciante (0 meses)</div>
+                            </div>
+
+                            <div>
+                                <label class="block text-base font-bold text-slate-700 mb-3">Objetivo principal</label>
+                                <select id="objetivoTreino" class="modern-input custom-select w-full rounded-xl px-6 py-4 bg-white font-semibold">
+                                    <option value="">Qual seu foco?</option>
+                                    <option value="perder-peso">🔥 Perder peso/queimar gordura</option>
+                                    <option value="ganhar-massa">💪 Ganhar massa muscular</option>
+                                    <option value="definir">✨ Definição muscular</option>
+                                    <option value="resistencia">🏃 Melhorar resistência</option>
+                                    <option value="forca">⚡ Aumentar força</option>
+                                    <option value="saude-geral">❤️ Saúde geral</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-base font-bold text-slate-700 mb-3">Tempo disponível por treino</label>
+                                <select id="tempoTreino" class="modern-input custom-select w-full rounded-xl px-6 py-4 bg-white font-semibold">
+                                    <option value="">Quanto tempo você tem?</option>
+                                    <option value="30min">⏱️ 30 minutos</option>
+                                    <option value="45min">⏱️ 45 minutos</option>
+                                    <option value="60min">⏱️ 1 hora</option>
+                                    <option value="90min">⏱️ 1h30</option>
+                                    <option value="120min">⏱️ 2 horas ou mais</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Preferências de Exercício -->
+                    <div class="training-card p-8">
+                        <div class="flex items-center gap-4 mb-6 pb-4 border-b-2 border-purple-100">
+                            <div class="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center text-3xl shadow-lg">
+                                🎯
+                            </div>
+                            <div>
+                                <h4 class="text-2xl font-black text-slate-800">O Que Você Curte?</h4>
+                                <p class="text-slate-600 mt-1 font-semibold">Marque suas atividades preferidas</p>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                            <label class="flex items-center gap-3 p-4 bg-white rounded-xl hover:bg-purple-50 cursor-pointer transition-all">
+                                <input type="checkbox" class="custom-checkbox" value="musculacao">
+                                <span class="font-bold">💪 Musculação</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-4 bg-white rounded-xl hover:bg-purple-50 cursor-pointer transition-all">
+                                <input type="checkbox" class="custom-checkbox" value="cardio">
+                                <span class="font-bold">🏃 Cardio</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-4 bg-white rounded-xl hover:bg-purple-50 cursor-pointer transition-all">
+                                <input type="checkbox" class="custom-checkbox" value="yoga">
+                                <span class="font-bold">🧘 Yoga</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-4 bg-white rounded-xl hover:bg-purple-50 cursor-pointer transition-all">
+                                <input type="checkbox" class="custom-checkbox" value="pilates">
+                                <span class="font-bold">🤸 Pilates</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-4 bg-white rounded-xl hover:bg-purple-50 cursor-pointer transition-all">
+                                <input type="checkbox" class="custom-checkbox" value="crossfit">
+                                <span class="font-bold">🔥 CrossFit</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-4 bg-white rounded-xl hover:bg-purple-50 cursor-pointer transition-all">
+                                <input type="checkbox" class="custom-checkbox" value="natacao">
+                                <span class="font-bold">🏊 Natação</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-4 bg-white rounded-xl hover:bg-purple-50 cursor-pointer transition-all">
+                                <input type="checkbox" class="custom-checkbox" value="funcional">
+                                <span class="font-bold">🎯 Funcional</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-4 bg-white rounded-xl hover:bg-purple-50 cursor-pointer transition-all">
+                                <input type="checkbox" class="custom-checkbox" value="luta">
+                                <span class="font-bold">🥊 Artes Marciais</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-4 bg-white rounded-xl hover:bg-purple-50 cursor-pointer transition-all">
+                                <input type="checkbox" class="custom-checkbox" value="danca">
+                                <span class="font-bold">💃 Dança</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Limitações -->
+                    <div class="training-card p-8">
+                        <div class="flex items-center gap-4 mb-6 pb-4 border-b-2 border-red-100">
+                            <div class="w-14 h-14 bg-gradient-to-br from-red-500 to-orange-600 rounded-xl flex items-center justify-center text-3xl shadow-lg">
+                                ⚠️
+                            </div>
+                            <div>
+                                <h4 class="text-2xl font-black text-slate-800">Alguma Limitação?</h4>
+                                <p class="text-slate-600 mt-1 font-semibold">Lesões ou restrições médicas (opcional)</p>
+                            </div>
+                        </div>
+
+                        <textarea 
+                            id="limitacoes" 
+                            rows="4" 
+                            class="modern-input w-full rounded-xl px-6 py-4 bg-white font-medium"
+                            placeholder="Ex: Tenho lesão no joelho, não posso fazer exercícios de impacto..."
+                        ></textarea>
+                    </div>
+                </div>
+
+                <!-- Botão Continuar para Planos -->
+                <div class="text-center mt-16">
+                    <button id="generateDiet" class="btn-primary text-white px-16 py-8 rounded-3xl text-2xl font-black transition-all duration-300 shadow-2xl disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none">
+                        <span class="mr-4">🚀</span>
+                        Escolher Plano
+                    </button>
+                    <p class="text-slate-600 mt-4 font-bold text-lg">Escolha o plano ideal e comece sua transformação! 💪</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-800 text-white py-8 mt-20">
+        <div class="container mx-auto px-4 text-center">
+            <p class="font-bold">© 2024 GymMind - Todos os direitos reservados</p>
+            <p class="text-slate-400 mt-2">Transforme seu corpo, transforme sua vida! 💪</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="frontend-integration.js"></script>
+    <script>
+        // Opções de alimentos por refeição
+        const mealOptions = {
+            cafe: [
+                '🍞 Pão Integral', '🥚 Ovos', '🧈 Manteiga', '🥛 Leite', 
+                '☕ Café', '🍌 Banana', '🥣 Aveia', '🧀 Queijo',
+                '🥓 Bacon', '🍓 Frutas', '🥐 Croissant', '🍯 Mel',
+                '🥜 Granola', '🥑 Abacate', '🥞 Panqueca', '🧃 Suco'
+            ],
+            almoco: [
+                '🍗 Frango', '🥩 Carne', '🐟 Peixe', '🍚 Arroz',
+                '🫘 Feijão', '🥗 Salada', '🥔 Batata', '🍝 Macarrão',
+                '🥦 Brócolis', '🥕 Cenoura', '🌽 Milho', '🍄 Cogumelos',
+                '🥒 Pepino', '🍅 Tomate', '🧅 Cebola', '🥬 Couve'
+            ],
+            'lanche-tarde': [
+                '🍎 Maçã', '🥜 Castanhas', '🍪 Biscoito Integral', '🥤 Shake',
+                '🧈 Pasta de Amendoim', '🍐 Pera', '🍇 Uvas', '🥨 Torrada',
+                '🧀 Queijo Cottage', '🥚 Ovo Cozido', '🥕 Cenoura Baby', '🫐 Frutas Vermelhas'
+            ],
+            jantar: [
+                '🥗 Salada', '🍲 Sopa', '🥘 Omelete', '🥙 Wrap',
+                '🍖 Carne Magra', '🦐 Camarão', '🥚 Ovos Mexidos', '🥦 Legumes',
+                '🍕 Pizza Integral', '🥪 Sanduíche', '🧆 Almôndegas', '🌮 Tacos'
+            ]
+        };
+
+        // Estado da aplicação
+        let userData = {
+            personal: {},
+            gender: '',
+            meals: {
+                cafe: [],
+                almoco: [],
+                'lanche-tarde': [],
+                jantar: []
+            },
+            incluirTreino: false,
+            training: {}
+        };
+
+        // Inicializar aplicação
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeMealOptions();
+            initializeEventListeners();
+            updateProgressBar();
+            initializeSmoothScroll();
+            initializeMobileMenu();
+        });
+
+        // Criar opções de refeição
+        function initializeMealOptions() {
+            Object.keys(mealOptions).forEach(mealType => {
+                const container = document.getElementById(mealType);
+                if (container) {
+                    mealOptions[mealType].forEach(item => {
+                        const div = document.createElement('div');
+                        div.className = 'meal-item';
+                        div.textContent = item;
+                        div.onclick = () => toggleMealItem(div, mealType, item);
+                        container.appendChild(div);
+                    });
+                }
+            });
+        }
+
+        // Toggle item de refeição
+        function toggleMealItem(element, mealType, item) {
+            element.classList.toggle('selected');
+            
+            if (element.classList.contains('selected')) {
+                if (!userData.meals[mealType].includes(item)) {
+                    userData.meals[mealType].push(item);
+                }
+            } else {
+                userData.meals[mealType] = userData.meals[mealType].filter(i => i !== item);
+            }
+            
+            updateProgressBar();
+        }
+
+        // Inicializar event listeners
+        function initializeEventListeners() {
+            // Toggle seção de treino
+            document.getElementById('incluirTreino').addEventListener('change', function() {
+                const trainingSection = document.getElementById('trainingSection');
+                userData.incluirTreino = this.checked;
+                
+                if (this.checked) {
+                    trainingSection.classList.remove('hidden');
+                    trainingSection.classList.add('fade-in-up');
+                } else {
+                    trainingSection.classList.add('hidden');
+                }
+                
+                updateProgressBar();
+            });
+
+            // Slider de experiência
+            const experienceSlider = document.getElementById('experienciaTreino');
+            const experienceValue = document.getElementById('experienceValue');
+            
+            experienceSlider.addEventListener('input', function() {
+                const months = this.value;
+                let level = '🆕 Iniciante';
+                
+                if (months > 12) level = '💪 Intermediário';
+                if (months > 36) level = '🏆 Avançado';
+                
+                experienceValue.textContent = `${level} (${months} meses)`;
+                
+                // Atualizar gradiente do slider
+                const percentage = (months / 60) * 100;
+                this.style.background = `linear-gradient(to right, #6366f1 0%, #6366f1 ${percentage}%, #e2e8f0 ${percentage}%, #e2e8f0 100%)`;
+            });
+
+            // Botão gerar dieta
+            document.getElementById('generateDiet').addEventListener('click', saveDataAndGoToPlans);
+
+            // Monitorar mudanças nos inputs
+            document.querySelectorAll('input, select, textarea').forEach(input => {
+                input.addEventListener('change', updateProgressBar);
+                input.addEventListener('input', updateProgressBar);
+            });
+        }
+
+        // Atualizar barra de progresso
+        function updateProgressBar() {
+            let total = 0;
+            let filled = 0;
+
+            // Informações básicas
+            const basicFields = ['nome', 'idade', 'peso', 'altura', 'genero', 'objetivo'];
+            total += basicFields.length;
+            basicFields.forEach(field => {
+                if (document.getElementById(field)?.value) filled++;
+            });
+
+            // Refeições (pelo menos 2 itens por refeição)
+            total += 4;
+            Object.keys(userData.meals).forEach(meal => {
+                if (userData.meals[meal].length >= 2) filled++;
+            });
+
+            // Se incluir treino
+            if (userData.incluirTreino) {
+                const trainingFields = ['rotinaTreino', 'localTreino', 'objetivoTreino', 'tempoTreino'];
+                total += trainingFields.length;
+                trainingFields.forEach(field => {
+                    if (document.getElementById(field)?.value) filled++;
+                });
+            }
+
+            const percentage = Math.round((filled / total) * 100);
+            document.getElementById('progressBar').style.width = percentage + '%';
+            document.getElementById('progressText').textContent = percentage + '%';
+
+            // Habilitar/desabilitar botão
+            const generateBtn = document.getElementById('generateDiet');
+            if (percentage >= 70) {
+                generateBtn.disabled = false;
+            } else {
+                generateBtn.disabled = true;
+            }
+        }
+
+        // Salvar dados e ir para planos
+        function saveDataAndGoToPlans() {
+            // Validar campos obrigatórios
+            const requiredFields = ['nome', 'idade', 'peso', 'altura', 'genero', 'objetivo'];
+            let hasErrors = false;
+            
+            requiredFields.forEach(field => {
+                const element = document.getElementById(field);
+                if (!element.value) {
+                    element.classList.add('border-red-500');
+                    hasErrors = true;
+                } else {
+                    element.classList.remove('border-red-500');
+                }
+            });
+
+            // Verificar refeições
+            Object.keys(userData.meals).forEach(meal => {
+                if (userData.meals[meal].length < 2) {
+                    hasErrors = true;
+                    const mealSection = document.getElementById(meal);
+                    if (mealSection) {
+                        mealSection.classList.add('border-2', 'border-red-500', 'rounded-xl', 'p-2');
+                        setTimeout(() => {
+                            mealSection.classList.remove('border-2', 'border-red-500', 'rounded-xl', 'p-2');
+                        }, 3000);
+                    }
+                }
+            });
+
+            if (hasErrors) {
+                showNotification('Por favor, preencha todos os campos obrigatórios e selecione pelo menos 2 itens por refeição!', 'error');
+                return;
+            }
+
+            // Coletar dados no formato correto para o backend
+            userData.personal = {
+                nome: document.getElementById('nome').value,
+                peso: document.getElementById('peso').value,
+                altura: document.getElementById('altura').value,
+                idade: document.getElementById('idade').value,
+                objetivo: document.getElementById('objetivo').value,
+                calorias: '', // Será calculado pelo backend
+                horarios: '07:30,10:30,12:00,15:00,19:00' // Horários padrão
+            };
+
+            userData.gender = document.getElementById('genero').value;
+
+            // Se incluir treino
+            if (userData.incluirTreino) {
+                const checkboxes = document.querySelectorAll('.custom-checkbox:checked');
+                userData.training = {
+                    rotina: document.getElementById('rotinaTreino').value,
+                    local: document.getElementById('localTreino').value,
+                    experiencia: parseInt(document.getElementById('experienciaTreino').value),
+                    objetivo: document.getElementById('objetivoTreino').value,
+                    tempo: document.getElementById('tempoTreino').value,
+                    preferencias: Array.from(checkboxes).map(cb => cb.value),
+                    limitacoes: document.getElementById('limitacoes').value
+                };
+            }
+
+            // Salvar no localStorage
+            localStorage.setItem('gymMindUserData', JSON.stringify(userData));
+
+            // Redirecionar para planos
+            window.location.href = 'planos.html';
+        }
+
+        // Mostrar notificações
+        function showNotification(message, type = 'info') {
+            const existingNotification = document.getElementById('notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+
+            const colors = {
+                success: 'bg-green-500',
+                error: 'bg-red-500',
+                warning: 'bg-yellow-500',
+                info: 'bg-blue-500'
+            };
+
+            const notificationHTML = `
+                <div id="notification" class="fixed top-24 right-4 z-50 ${colors[type]} text-white px-6 py-4 rounded-xl shadow-2xl flex items-center gap-3 animate-pulse">
+                    <span class="text-xl">${type === 'error' ? '⚠️' : type === 'success' ? '✅' : 'ℹ️'}</span>
+                    <span class="font-bold">${message}</span>
+                </div>
+            `;
+
+            document.body.insertAdjacentHTML('beforeend', notificationHTML);
+
+            setTimeout(() => {
+                const notification = document.getElementById('notification');
+                if (notification) {
+                    notification.classList.add('opacity-0', 'transition-opacity', 'duration-500');
+                    setTimeout(() => notification.remove(), 500);
+                }
+            }, 5000);
+        }
+
+        // Smooth scroll
+        function initializeSmoothScroll() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('header');
+                if (header) {
+                    if (window.scrollY > 100) {
+                        header.style.boxShadow = '0 10px 40px rgba(0, 0, 0, 0.15)';
+                    } else {
+                        header.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.1)';
+                    }
+                }
+            });
+        }
+
+        // Menu mobile
+        function initializeMobileMenu() {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+        }
+
+        // Logout
+        function handleLogout() {
+            if (confirm('Deseja realmente sair?')) {
+                localStorage.clear();
+                window.location.href = 'index.html';
+            }
+        }
+
+        // Fechar modal (utilitário)
+        function closeModal() {
+            const modals = document.querySelectorAll('.fixed.inset-0');
+            modals.forEach(modal => modal.remove());
+        }
+    </script>
+</body>
+</html>

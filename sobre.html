@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre - GymMind</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .logo-brain {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .logo-brain::before {
+            content: '🧠';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+        }
+
+        .nav-btn {
+            border: 2px solid #6366f1;
+            padding: 8px 24px;
+            border-radius: 12px;
+            transition: all 0.3s;
+        }
+
+        .nav-btn:hover {
+            background: #6366f1;
+            color: white;
+        }
+
+        .feature-card {
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-50 to-indigo-50">
+    <!-- Header -->
+    <header class="fixed top-0 w-full z-50 glass-card transition-all duration-300">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="logo-brain"></div>
+                <span class="text-2xl font-black bg-gradient-to-r from-indigo-600 to-purple-600 text-transparent bg-clip-text">GymMind</span>
+            </div>
+            <nav class="hidden md:flex items-center gap-8">
+                <a href="index.html" class="font-bold text-slate-700 hover:text-indigo-600 transition-colors">Home</a>
+                <a href="dietas.html" class="font-bold text-slate-700 hover:text-indigo-600 transition-colors">Dietas</a>
+                <a href="sobre.html" class="font-bold text-indigo-600">Sobre</a>
+                <a href="perfil.html" class="font-bold text-slate-700 hover:text-indigo-600 transition-colors">Perfil</a>
+                <button onclick="handleLogout()" class="nav-btn font-bold text-indigo-600">
+                    Sair
+                </button>
+            </nav>
+            
+            <!-- Menu Mobile -->
+            <button id="mobileMenuBtn" class="md:hidden text-slate-700">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+        
+        <!-- Menu Mobile Dropdown -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-gray-200">
+            <div class="container mx-auto px-4 py-4 flex flex-col gap-4">
+                <a href="index.html" class="font-bold text-slate-700">Home</a>
+                <a href="dietas.html" class="font-bold text-slate-700">Dietas</a>
+                <a href="sobre.html" class="font-bold text-indigo-600">Sobre</a>
+                <a href="perfil.html" class="font-bold text-slate-700">Perfil</a>
+                <button onclick="handleLogout()" class="nav-btn font-bold text-indigo-600 text-left">
+                    Sair
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient min-h-96 flex items-center justify-center relative mt-16">
+        <div class="container mx-auto px-4 text-center relative z-10 py-20">
+            <h1 class="text-5xl md:text-7xl font-black text-white mb-6">
+                Sobre o <span class="text-yellow-300">GymMind</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto">
+                Transformando vidas através de dietas personalizadas com inteligência artificial
+            </p>
+        </div>
+    </section>
+
+    <!-- Conteúdo Principal -->
+    <section class="py-20">
+        <div class="container mx-auto px-4">
+            <!-- Nossa Missão -->
+            <div class="max-w-4xl mx-auto mb-20">
+                <div class="glass-card rounded-3xl p-8 md:p-12">
+                    <div class="text-center mb-8">
+                        <span class="text-6xl mb-4 block">🎯</span>
+                        <h2 class="text-4xl font-black text-slate-800 mb-4">Nossa Missão</h2>
+                    </div>
+                    <p class="text-lg text-slate-600 leading-relaxed text-center">
+                        O GymMind nasceu com o propósito de democratizar o acesso a dietas personalizadas e de qualidade. 
+                        Utilizando o poder da inteligência artificial, criamos planos alimentares únicos que respeitam 
+                        suas preferências, objetivos e estilo de vida, tornando a nutrição adequada acessível para todos.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Como Funciona -->
+            <div class="max-w-6xl mx-auto mb-20">
+                <h2 class="text-4xl font-black text-slate-800 text-center mb-12">
+                    Como <span class="text-indigo-600">Funciona</span>
+                </h2>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Passo 1 -->
+                    <div class="feature-card glass-card rounded-3xl p-8 text-center">
+                        <div class="w-20 h-20 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <span class="text-4xl">📝</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-800 mb-4">1. Seus Dados</h3>
+                        <p class="text-slate-600">
+                            Você informa seus dados pessoais, objetivos e seleciona seus alimentos preferidos
+                        </p>
+                    </div>
+
+                    <!-- Passo 2 -->
+                    <div class="feature-card glass-card rounded-3xl p-8 text-center">
+                        <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <span class="text-4xl">🤖</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-800 mb-4">2. IA Processa</h3>
+                        <p class="text-slate-600">
+                            Nossa inteligência artificial analisa tudo e cria um plano alimentar personalizado
+                        </p>
+                    </div>
+
+                    <!-- Passo 3 -->
+                    <div class="feature-card glass-card rounded-3xl p-8 text-center">
+                        <div class="w-20 h-20 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <span class="text-4xl">📄</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-800 mb-4">3. Dieta Pronta</h3>
+                        <p class="text-slate-600">
+                            Receba sua dieta completa em PDF profissional, pronta para usar
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Diferenciais -->
+            <div class="max-w-6xl mx-auto mb-20">
+                <h2 class="text-4xl font-black text-slate-800 text-center mb-12">
+                    Nossos <span class="text-indigo-600">Diferenciais</span>
+                </h2>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Diferencial 1 -->
+                    <div class="glass-card rounded-2xl p-6 flex gap-4">
+                        <span class="text-3xl">✨</span>
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-800 mb-2">100% Personalizado</h3>
+                            <p class="text-slate-600">
+                                Cada dieta é única, criada especificamente para você com base em seus dados e preferências
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Diferencial 2 -->
+                    <div class="glass-card rounded-2xl p-6 flex gap-4">
+                        <span class="text-3xl">🧠</span>
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-800 mb-2">Inteligência Artificial</h3>
+                            <p class="text-slate-600">
+                                Utilizamos IA de ponta (GPT-4 e Claude-3) para criar planos de altíssima qualidade
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Diferencial 3 -->
+                    <div class="glass-card rounded-2xl p-6 flex gap-4">
+                        <span class="text-3xl">⚡</span>
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-800 mb-2">Rápido e Prático</h3>
+                            <p class="text-slate-600">
+                                Sua dieta fica pronta em poucos minutos, sem burocracia ou longas consultas
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Diferencial 4 -->
+                    <div class="glass-card rounded-2xl p-6 flex gap-4">
+                        <span class="text-3xl">💰</span>
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-800 mb-2">Preço Justo</h3>
+                            <p class="text-slate-600">
+                                Muito mais acessível que uma consulta tradicional, com a mesma qualidade
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Diferencial 5 -->
+                    <div class="glass-card rounded-2xl p-6 flex gap-4">
+                        <span class="text-3xl">🍽️</span>
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-800 mb-2">Seus Alimentos Favoritos</h3>
+                            <p class="text-slate-600">
+                                Você escolhe o que gosta de comer - nada de dietas restritivas e difíceis
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Diferencial 6 -->
+                    <div class="glass-card rounded-2xl p-6 flex gap-4">
+                        <span class="text-3xl">💪</span>
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-800 mb-2">Inclui Treinos</h3>
+                            <p class="text-slate-600">
+                                Opção de adicionar plano de treinos personalizado junto com sua dieta
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+  
+
+            <!-- Estatísticas -->
+            <div class="max-w-6xl mx-auto mb-20">
+                <div class="glass-card rounded-3xl p-12">
+                    <h2 class="text-4xl font-black text-slate-800 text-center mb-12">
+                        GymMind em <span class="text-indigo-600">Números</span>
+                    </h2>
+                    <div class="grid md:grid-cols-4 gap-8 text-center">
+                        <div>
+                            <div class="text-5xl font-black text-indigo-600 mb-2">1000+</div>
+                            <div class="text-slate-600 font-semibold">Dietas Geradas</div>
+                        </div>
+                        <div>
+                            <div class="text-5xl font-black text-purple-600 mb-2">98%</div>
+                            <div class="text-slate-600 font-semibold">Satisfação</div>
+                        </div>
+                        <div>
+                            <div class="text-5xl font-black text-pink-600 mb-2">24/7</div>
+                            <div class="text-slate-600 font-semibold">Disponibilidade</div>
+                        </div>
+                        <div>
+                            <div class="text-5xl font-black text-indigo-600 mb-2">< 5min</div>
+                            <div class="text-slate-600 font-semibold">Tempo Médio</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="glass-card rounded-3xl p-12">
+                    <h2 class="text-4xl font-black text-slate-800 mb-6">
+                        Pronto para <span class="text-indigo-600">Transformar</span> Seu Corpo?
+                    </h2>
+                    <p class="text-xl text-slate-600 mb-8">
+                        Junte-se a milhares de pessoas que já estão alcançando seus objetivos com o GymMind
+                    </p>
+                    <a href="index.html" class="inline-block bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-12 py-6 rounded-full text-xl font-bold hover:shadow-2xl transition-all">
+                        Criar Minha Dieta Agora 🚀
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-800 text-white py-8 mt-20">
+        <div class="container mx-auto px-4 text-center">
+            <p class="font-bold">© 2024 GymMind - Todos os direitos reservados</p>
+            <p class="text-slate-400 mt-2">Transforme seu corpo, transforme sua vida! 💪</p>
+        </div>
+    </footer>
+
+    <script>
+        // Menu mobile
+        document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        });
+
+        // Logout
+        function handleLogout() {
+            if (confirm('Deseja realmente sair?')) {
+                localStorage.clear();
+                window.location.href = 'index.html';
+            }
+        }
+    </script>
+</body>
+</html>

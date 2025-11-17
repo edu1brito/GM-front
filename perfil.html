@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Perfil - GymMind</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        /* HEADER */
+        .header {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #667eea;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #667eea;
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #667eea;
+        }
+
+        .logout-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .logout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        /* MOBILE MENU */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            border-radius: 3px;
+            transition: 0.3s;
+        }
+
+        /* CONTAINER */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        /* PROFILE HEADER */
+        .profile-header {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .profile-info h1 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-info p {
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-badges {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .badge {
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .badge-premium {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .badge-verified {
+            background: #10b981;
+            color: white;
+        }
+
+        .badge-member {
+            background: #f59e0b;
+            color: white;
+        }
+
+        /* TABS */
+        .tabs-container {
+            background: white;
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 1rem;
+            border-bottom: 2px solid #f0f0f0;
+            margin-bottom: 2rem;
+            overflow-x: auto;
+        }
+
+        .tab {
+            padding: 1rem 2rem;
+            border: none;
+            background: transparent;
+            color: #666;
+            font-weight: 600;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .tab:hover {
+            color: #667eea;
+        }
+
+        .tab.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+        }
+
+        /* TAB CONTENT */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* FORM SECTION */
+        .form-section {
+            margin-bottom: 2rem;
+        }
+
+        .form-section h3 {
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 0.75rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-group input[readonly] {
+            background: #f5f5f5;
+            cursor: not-allowed;
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        /* BUTTONS */
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #f5f5f5;
+            color: #666;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+
+        .btn-danger {
+            background: #ef4444;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        .btn-danger:hover {
+            background: #dc2626;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        /* STATS CARDS */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea15, #764ba215);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        .stat-card h4 {
+            font-size: 2rem;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card p {
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* PROGRESS CARD */
+        .progress-card {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .progress-header h4 {
+            color: #333;
+        }
+
+        .progress-value {
+            color: #667eea;
+            font-weight: 700;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+
+        /* SETTINGS LIST */
+        .settings-list {
+            list-style: none;
+        }
+
+        .settings-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+        }
+
+        .settings-item-info h4 {
+            color: #333;
+            margin-bottom: 0.25rem;
+        }
+
+        .settings-item-info p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* TOGGLE SWITCH */
+        .toggle-switch {
+            position: relative;
+            width: 60px;
+            height: 30px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #ccc;
+            border-radius: 30px;
+            transition: 0.3s;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 4px;
+            bottom: 4px;
+            background: white;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+
+        .toggle-switch input:checked + .toggle-slider {
+            background: #667eea;
+        }
+
+        .toggle-switch input:checked + .toggle-slider:before {
+            transform: translateX(30px);
+        }
+
+        /* HISTORY TIMELINE */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.5rem;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #667eea;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #667eea;
+        }
+
+        .timeline-content {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 12px;
+        }
+
+        .timeline-content h4 {
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content p {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-date {
+            color: #999;
+            font-size: 0.85rem;
+        }
+
+        /* ALERT */
+        .alert {
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .alert-success {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .alert-warning {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .alert-danger {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .alert-icon {
+            font-size: 1.5rem;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .profile-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tabs {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .form-actions {
+                flex-direction: column;
+            }
+
+            .form-actions button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                🧠 GymMind
+            </a>
+            
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="dietas.html">Dietas</a></li>
+                    <li><a href="sobre.html">Sobre</a></li>
+                    <li><a href="perfil.html" class="active">Perfil</a></li>
+                </ul>
+            </nav>
+
+            <a href="index.html" class="logout-btn">Sair</a>
+
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+        <!-- PROFILE HEADER -->
+        <section class="profile-header">
+            <div class="profile-avatar" id="profileAvatar">👤</div>
+            <div class="profile-info">
+                <h1 id="profileName">Usuário</h1>
+                <p id="profileEmail">usuario@email.com</p>
+                <p id="profileJoinDate">Membro desde Janeiro 2025</p>
+                <div class="profile-badges">
+                    <span class="badge badge-premium">✨ Premium</span>
+                    <span class="badge badge-verified">✓ Verificado</span>
+                    <span class="badge badge-member">🏆 Membro Ativo</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- TABS -->
+        <div class="tabs-container">
+            <div class="tabs">
+                <button class="tab active" onclick="switchTab('dados-pessoais')">📊 Dados Pessoais</button>
+                <button class="tab" onclick="switchTab('objetivos')">🎯 Objetivos</button>
+                <button class="tab" onclick="switchTab('progresso')">📈 Progresso</button>
+                <button class="tab" onclick="switchTab('configuracoes')">⚙️ Configurações</button>
+                <button class="tab" onclick="switchTab('historico')">📜 Histórico</button>
+            </div>
+
+            <!-- TAB: DADOS PESSOAIS -->
+            <div id="dados-pessoais" class="tab-content active">
+                <form id="personalDataForm">
+                    <div class="form-section">
+                        <h3>Informações Básicas</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Nome Completo *</label>
+                                <input type="text" id="nome" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Email *</label>
+                                <input type="email" id="email" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>Gênero *</label>
+                                <select id="gender" required>
+                                    <option value="">Selecione</option>
+                                    <option value="masculino">Masculino</option>
+                                    <option value="feminino">Feminino</option>
+                                    <option value="outro">Outro</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Data de Nascimento *</label>
+                                <input type="date" id="dataNascimento" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Medidas Corporais</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Peso (kg) *</label>
+                                <input type="number" id="peso" step="0.1" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Altura (cm) *</label>
+                                <input type="number" id="altura" required>
+                            </div>
+                            <div class="form-group">
+                                <label>IMC</label>
+                                <input type="text" id="imc" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>Classificação IMC</label>
+                                <input type="text" id="imcClass" readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Informações de Contato</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Telefone</label>
+                                <input type="tel" id="telefone" placeholder="(00) 00000-0000">
+                            </div>
+                            <div class="form-group">
+                                <label>Cidade</label>
+                                <input type="text" id="cidade">
+                            </div>
+                            <div class="form-group">
+                                <label>Estado</label>
+                                <input type="text" id="estado">
+                            </div>
+                            <div class="form-group">
+                                <label>País</label>
+                                <input type="text" id="pais" value="Brasil">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">💾 Salvar Alterações</button>
+                        <button type="button" class="btn-secondary" onclick="resetForm()">🔄 Cancelar</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- TAB: OBJETIVOS -->
+            <div id="objetivos" class="tab-content">
+                <form id="goalsForm">
+                    <div class="form-section">
+                        <h3>Seus Objetivos</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Objetivo Principal *</label>
+                                <select id="objetivo" required>
+                                    <option value="">Selecione</option>
+                                    <option value="emagrecimento">Emagrecimento</option>
+                                    <option value="ganho-massa">Ganho de Massa Muscular</option>
+                                    <option value="manutencao">Manutenção</option>
+                                    <option value="definicao">Definição</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Peso Desejado (kg)</label>
+                                <input type="number" id="pesoDesejado" step="0.1">
+                            </div>
+                            <div class="form-group">
+                                <label>Calorias Diárias *</label>
+                                <input type="number" id="calorias" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Nível de Atividade</label>
+                                <select id="nivelAtividade">
+                                    <option value="sedentario">Sedentário</option>
+                                    <option value="leve">Leve (1-3x/semana)</option>
+                                    <option value="moderado">Moderado (3-5x/semana)</option>
+                                    <option value="intenso">Intenso (6-7x/semana)</option>
+                                    <option value="muito-intenso">Muito Intenso (2x/dia)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Rotina Alimentar</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Número de Refeições por Dia</label>
+                                <select id="numeroRefeicoes">
+                                    <option value="3">3 refeições</option>
+                                    <option value="4">4 refeições</option>
+                                    <option value="5" selected>5 refeições</option>
+                                    <option value="6">6 refeições</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Restrições Alimentares</label>
+                                <textarea id="restricoes" placeholder="Ex: Intolerância à lactose, vegetariano, etc."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">💾 Salvar Objetivos</button>
+                        <button type="button" class="btn-secondary" onclick="resetForm()">🔄 Cancelar</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- TAB: PROGRESSO -->
+            <div id="progresso" class="tab-content">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h4 id="statDietasGeradas">0</h4>
+                        <p>Dietas Geradas</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4 id="statDiasAtivo">0</h4>
+                        <p>Dias Ativo</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4 id="statPesoPerdido">0 kg</h4>
+                        <p>Peso Perdido</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4 id="statMetasConcluidas">0%</h4>
+                        <p>Metas Concluídas</p>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Progresso Atual</h3>
+                    
+                    <div class="progress-card">
+                        <div class="progress-header">
+                            <h4>Meta de Peso</h4>
+                            <span class="progress-value" id="pesoProgress">0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="pesoProgressBar" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div class="progress-card">
+                        <div class="progress-header">
+                            <h4>Calorias Diárias</h4>
+                            <span class="progress-value" id="caloriasProgress">0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="caloriasProgressBar" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div class="progress-card">
+                        <div class="progress-header">
+                            <h4>Consistência</h4>
+                            <span class="progress-value" id="consistenciaProgress">0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="consistenciaProgressBar" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Adicionar Medida</h3>
+                    <form id="progressForm">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Data</label>
+                                <input type="date" id="progressDate" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Peso (kg)</label>
+                                <input type="number" id="progressPeso" step="0.1" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Observações</label>
+                                <input type="text" id="progressNotes" placeholder="Como está se sentindo?">
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary">➕ Adicionar Medida</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- TAB: CONFIGURAÇÕES -->
+            <div id="configuracoes" class="tab-content">
+                <div class="form-section">
+                    <h3>Notificações</h3>
+                    <ul class="settings-list">
+                        <li class="settings-item">
+                            <div class="settings-item-info">
+                                <h4>Email de Lembrete</h4>
+                                <p>Receber lembretes de refeições por email</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </li>
+                        <li class="settings-item">
+                            <div class="settings-item-info">
+                                <h4>Notificações Push</h4>
+                                <p>Receber notificações no navegador</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </li>
+                        <li class="settings-item">
+                            <div class="settings-item-info">
+                                <h4>Newsletter</h4>
+                                <p>Receber dicas e novidades por email</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="form-section">
+                    <h3>Segurança</h3>
+                    <form id="securityForm">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Senha Atual</label>
+                                <input type="password" id="senhaAtual" placeholder="Digite sua senha atual">
+                            </div>
+                            <div class="form-group">
+                                <label>Nova Senha</label>
+                                <input type="password" id="novaSenha" placeholder="Digite a nova senha">
+                            </div>
+                            <div class="form-group">
+                                <label>Confirmar Nova Senha</label>
+                                <input type="password" id="confirmarSenha" placeholder="Confirme a nova senha">
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary">🔒 Alterar Senha</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="form-section">
+                    <h3>Zona de Perigo</h3>
+                    <div class="alert alert-danger">
+                        <span class="alert-icon">⚠️</span>
+                        <div>
+                            <strong>Cuidado!</strong> Esta ação não pode ser desfeita.
+                        </div>
+                    </div>
+                    <button type="button" class="btn-danger" onclick="deleteAccount()">🗑️ Excluir Conta</button>
+                </div>
+            </div>
+
+            <!-- TAB: HISTÓRICO -->
+            <div id="historico" class="tab-content">
+                <div class="form-section">
+                    <h3>Histórico de Atividades</h3>
+                    <div class="timeline" id="activityTimeline">
+                        <!-- Timeline items serão inseridos via JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="frontend-integration.js"></script>
+    <script>
+        // Estado Global
+        let userData = {
+            nome: '',
+            email: 'usuario@gymmind.com',
+            gender: '',
+            dataNascimento: '',
+            peso: 0,
+            altura: 0,
+            objetivo: '',
+            calorias: 0,
+            telefone: '',
+            cidade: '',
+            estado: '',
+            pais: 'Brasil'
+        };
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', () => {
+            loadUserData();
+            setupEventListeners();
+            calculateIMC();
+            loadStats();
+            loadHistory();
+            setDefaultDate();
+        });
+
+        // Configurar Event Listeners
+        function setupEventListeners() {
+            // Form de dados pessoais
+            document.getElementById('personalDataForm').addEventListener('submit', savePersonalData);
+            
+            // Form de objetivos
+            document.getElementById('goalsForm').addEventListener('submit', saveGoals);
+            
+            // Form de progresso
+            document.getElementById('progressForm').addEventListener('submit', addProgress);
+            
+            // Form de segurança
+            document.getElementById('securityForm').addEventListener('submit', changePassword);
+            
+            // Calcular IMC ao mudar peso/altura
+            document.getElementById('peso').addEventListener('input', calculateIMC);
+            document.getElementById('altura').addEventListener('input', calculateIMC);
+        }
+
+        // Carregar Dados do Usuário
+        function loadUserData() {
+            // Tentar carregar do localStorage
+            const savedData = localStorage.getItem('userData');
+            if (savedData) {
+                userData = JSON.parse(savedData);
+                populateForm(userData);
+            }
+
+            // Tentar carregar última dieta para pegar dados
+            const lastDiet = getLastDiet();
+            if (lastDiet) {
+                userData = { ...userData, ...lastDiet.personal };
+                populateForm(userData);
+            }
+
+            // Atualizar header do perfil
+            updateProfileHeader();
+        }
+
+        // Popular Formulário
+        function populateForm(data) {
+            if (data.nome) document.getElementById('nome').value = data.nome;
+            if (data.email) document.getElementById('email').value = data.email;
+            if (data.gender) document.getElementById('gender').value = data.gender;
+            if (data.peso) document.getElementById('peso').value = data.peso;
+            if (data.altura) document.getElementById('altura').value = data.altura;
+            if (data.objetivo) document.getElementById('objetivo').value = data.objetivo;
+            if (data.calorias) document.getElementById('calorias').value = data.calorias;
+            if (data.telefone) document.getElementById('telefone').value = data.telefone;
+            if (data.cidade) document.getElementById('cidade').value = data.cidade;
+            if (data.estado) document.getElementById('estado').value = data.estado;
+
+            calculateIMC();
+        }
+
+        // Atualizar Header do Perfil
+        function updateProfileHeader() {
+            const nome = userData.nome || 'Usuário';
+            const email = userData.email || 'usuario@email.com';
+            
+            document.getElementById('profileName').textContent = nome;
+            document.getElementById('profileEmail').textContent = email;
+            document.getElementById('profileAvatar').textContent = nome.charAt(0).toUpperCase();
+        }
+
+        // Salvar Dados Pessoais
+        function savePersonalData(e) {
+            e.preventDefault();
+
+            userData.nome = document.getElementById('nome').value;
+            userData.email = document.getElementById('email').value;
+            userData.gender = document.getElementById('gender').value;
+            userData.dataNascimento = document.getElementById('dataNascimento').value;
+            userData.peso = document.getElementById('peso').value;
+            userData.altura = document.getElementById('altura').value;
+            userData.telefone = document.getElementById('telefone').value;
+            userData.cidade = document.getElementById('cidade').value;
+            userData.estado = document.getElementById('estado').value;
+            userData.pais = document.getElementById('pais').value;
+
+            localStorage.setItem('userData', JSON.stringify(userData));
+            updateProfileHeader();
+
+            showAlert('success', 'Dados salvos com sucesso!');
+        }
+
+        // Salvar Objetivos
+        function saveGoals(e) {
+            e.preventDefault();
+
+            userData.objetivo = document.getElementById('objetivo').value;
+            userData.pesoDesejado = document.getElementById('pesoDesejado').value;
+            userData.calorias = document.getElementById('calorias').value;
+            userData.nivelAtividade = document.getElementById('nivelAtividade').value;
+            userData.numeroRefeicoes = document.getElementById('numeroRefeicoes').value;
+            userData.restricoes = document.getElementById('restricoes').value;
+
+            localStorage.setItem('userData', JSON.stringify(userData));
+
+            showAlert('success', 'Objetivos salvos com sucesso!');
+        }
+
+        // Adicionar Progresso
+        function addProgress(e) {
+            e.preventDefault();
+
+            const progressData = {
+                date: document.getElementById('progressDate').value,
+                peso: document.getElementById('progressPeso').value,
+                notes: document.getElementById('progressNotes').value,
+                timestamp: new Date().toISOString()
+            };
+
+            // Salvar no localStorage
+            const progressHistory = JSON.parse(localStorage.getItem('progressHistory') || '[]');
+            progressHistory.unshift(progressData);
+            localStorage.setItem('progressHistory', JSON.stringify(progressHistory));
+
+            // Limpar form
+            document.getElementById('progressForm').reset();
+            setDefaultDate();
+
+            // Recarregar estatísticas
+            loadStats();
+            loadHistory();
+
+            showAlert('success', 'Progresso registrado com sucesso!');
+        }
+
+        // Alterar Senha
+        function changePassword(e) {
+            e.preventDefault();
+
+            const senhaAtual = document.getElementById('senhaAtual').value;
+            const novaSenha = document.getElementById('novaSenha').value;
+            const confirmarSenha = document.getElementById('confirmarSenha').value;
+
+            if (!senhaAtual || !novaSenha || !confirmarSenha) {
+                showAlert('warning', 'Preencha todos os campos de senha');
+                return;
+            }
+
+            if (novaSenha !== confirmarSenha) {
+                showAlert('danger', 'As senhas não conferem');
+                return;
+            }
+
+            if (novaSenha.length < 6) {
+                showAlert('warning', 'A senha deve ter pelo menos 6 caracteres');
+                return;
+            }
+
+            // Aqui você integraria com o backend
+            showAlert('success', 'Senha alterada com sucesso!');
+            document.getElementById('securityForm').reset();
+        }
+
+        // Calcular IMC
+        function calculateIMC() {
+            const peso = parseFloat(document.getElementById('peso').value);
+            const altura = parseFloat(document.getElementById('altura').value) / 100;
+
+            if (peso && altura) {
+                const imc = peso / (altura * altura);
+                document.getElementById('imc').value = imc.toFixed(1);
+
+                let classificacao = '';
+                if (imc < 18.5) classificacao = 'Abaixo do peso';
+                else if (imc < 25) classificacao = 'Peso normal';
+                else if (imc < 30) classificacao = 'Sobrepeso';
+                else if (imc < 35) classificacao = 'Obesidade Grau I';
+                else if (imc < 40) classificacao = 'Obesidade Grau II';
+                else classificacao = 'Obesidade Grau III';
+
+                document.getElementById('imcClass').value = classificacao;
+            }
+        }
+
+        // Carregar Estatísticas
+        function loadStats() {
+            // Dietas geradas
+            const diets = getAllDiets();
+            document.getElementById('statDietasGeradas').textContent = diets.length;
+
+            // Dias ativo (desde a primeira dieta)
+            if (diets.length > 0) {
+                const firstDiet = diets[diets.length - 1];
+                const days = Math.floor((Date.now() - new Date(firstDiet.createdAt)) / (1000 * 60 * 60 * 24));
+                document.getElementById('statDiasAtivo').textContent = days;
+            }
+
+            // Peso perdido
+            const progressHistory = JSON.parse(localStorage.getItem('progressHistory') || '[]');
+            if (progressHistory.length > 1) {
+                const pesoInicial = parseFloat(progressHistory[progressHistory.length - 1].peso);
+                const pesoAtual = parseFloat(progressHistory[0].peso);
+                const pesoPerdido = pesoInicial - pesoAtual;
+                document.getElementById('statPesoPerdido').textContent = `${pesoPerdido.toFixed(1)} kg`;
+            }
+
+            // Metas concluídas
+            const metasConcluidas = calculateGoalsCompleted();
+            document.getElementById('statMetasConcluidas').textContent = `${metasConcluidas}%`;
+
+            // Atualizar barras de progresso
+            updateProgressBars();
+        }
+
+        // Atualizar Barras de Progresso
+        function updateProgressBars() {
+            // Progresso de peso
+            const pesoAtual = parseFloat(userData.peso) || 0;
+            const pesoDesejado = parseFloat(userData.pesoDesejado) || pesoAtual;
+            const pesoProgress = Math.min(100, Math.abs((pesoAtual - pesoDesejado) / pesoDesejado * 100));
+            
+            document.getElementById('pesoProgress').textContent = `${Math.round(pesoProgress)}%`;
+            document.getElementById('pesoProgressBar').style.width = `${pesoProgress}%`;
+
+            // Progresso de calorias (simulado)
+            const caloriasProgress = 75;
+            document.getElementById('caloriasProgress').textContent = `${caloriasProgress}%`;
+            document.getElementById('caloriasProgressBar').style.width = `${caloriasProgress}%`;
+
+            // Consistência (simulado)
+            const consistenciaProgress = 85;
+            document.getElementById('consistenciaProgress').textContent = `${consistenciaProgress}%`;
+            document.getElementById('consistenciaProgressBar').style.width = `${consistenciaProgress}%`;
+        }
+
+        // Carregar Histórico
+        function loadHistory() {
+            const timeline = document.getElementById('activityTimeline');
+            const diets = getAllDiets();
+            const progress = JSON.parse(localStorage.getItem('progressHistory') || '[]');
+
+            // Combinar e ordenar eventos
+            const events = [
+                ...diets.map(d => ({
+                    type: 'diet',
+                    title: 'Nova Dieta Criada',
+                    description: `Dieta ${d.personal.objetivo} criada`,
+                    date: d.createdAt
+                })),
+                ...progress.map(p => ({
+                    type: 'progress',
+                    title: 'Progresso Registrado',
+                    description: `Peso: ${p.peso}kg - ${p.notes || 'Sem observações'}`,
+                    date: p.timestamp
+                }))
+            ].sort((a, b) => new Date(b.date) - new Date(a.date));
+
+            timeline.innerHTML = events.slice(0, 10).map(event => `
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>${event.title}</h4>
+                        <p>${event.description}</p>
+                        <span class="timeline-date">${formatDate(event.date)}</span>
+                    </div>
+                </div>
+            `).join('');
+
+            if (events.length === 0) {
+                timeline.innerHTML = '<p style="color: #666;">Nenhuma atividade registrada ainda.</p>';
+            }
+        }
+
+        // Helpers
+        function getAllDiets() {
+            const diets = [];
+            const keys = Object.keys(localStorage);
+            keys.forEach(key => {
+                if (key.startsWith('diet_')) {
+                    try {
+                        diets.push(JSON.parse(localStorage.getItem(key)));
+                    } catch (e) {}
+                }
+            });
+            return diets.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        }
+
+        function getLastDiet() {
+            const diets = getAllDiets();
+            return diets.length > 0 ? diets[0] : null;
+        }
+
+        function calculateGoalsCompleted() {
+            const diets = getAllDiets();
+            return Math.min(100, diets.length * 20);
+        }
+
+        function setDefaultDate() {
+            document.getElementById('progressDate').valueAsDate = new Date();
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('pt-BR', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        // Switch Tab
+        function switchTab(tabName) {
+            // Remover active de todas as tabs
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+
+            // Adicionar active na tab clicada
+            event.target.classList.add('active');
+            document.getElementById(tabName).classList.add('active');
+        }
+
+        // Reset Form
+        function resetForm() {
+            loadUserData();
+        }
+
+        // Delete Account
+        function deleteAccount() {
+            if (confirm('⚠️ ATENÇÃO!\n\nTem certeza que deseja excluir sua conta?\n\nTodos os seus dados, dietas e progresso serão perdidos permanentemente.\n\nEsta ação NÃO pode ser desfeita!')) {
+                if (confirm('Confirma NOVAMENTE que deseja excluir tudo?')) {
+                    // Limpar localStorage
+                    localStorage.clear();
+                    
+                    showAlert('success', 'Conta excluída com sucesso. Você será redirecionado...');
+                    
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 2000);
+                }
+            }
+        }
+
+        // Toggle Menu Mobile
+        function toggleMenu() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        }
+
+        // Show Alert
+        function showAlert(type, message) {
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `alert alert-${type}`;
+            alertDiv.innerHTML = `
+                <span class="alert-icon">${type === 'success' ? '✓' : type === 'warning' ? '⚠️' : '✗'}</span>
+                <div>${message}</div>
+            `;
+
+            const container = document.querySelector('.tab-content.active');
+            container.insertBefore(alertDiv, container.firstChild);
+
+            setTimeout(() => alertDiv.remove(), 5000);
+        }
+    </script>
+</body>
+</html>

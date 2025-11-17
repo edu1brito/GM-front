@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minhas Dietas - GymMind</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        /* HEADER */
+        .header {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #667eea;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #667eea;
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #667eea;
+        }
+
+        .logout-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .logout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        /* MOBILE MENU */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            border-radius: 3px;
+            transition: 0.3s;
+        }
+
+        /* CONTAINER */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        /* HERO SECTION */
+        .hero-section {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .hero-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title h1 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-title p {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .new-diet-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .new-diet-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        /* STATS */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea15, #764ba215);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        .stat-card h3 {
+            font-size: 2rem;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card p {
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* FILTERS */
+        .filters-section {
+            background: white;
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .filters-content {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .filter-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .filter-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .filter-group select,
+        .filter-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .filter-group select:focus,
+        .filter-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .clear-filters-btn {
+            background: #f5f5f5;
+            color: #666;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .clear-filters-btn:hover {
+            background: #e0e0e0;
+        }
+
+        /* DIETS GRID */
+        .diets-section {
+            margin-bottom: 2rem;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-header h2 {
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .view-toggle {
+            display: flex;
+            gap: 0.5rem;
+            background: white;
+            padding: 0.25rem;
+            border-radius: 10px;
+        }
+
+        .view-toggle button {
+            padding: 0.5rem 1rem;
+            border: none;
+            background: transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .view-toggle button.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .diets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .diet-card {
+            background: white;
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .diet-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .diet-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+
+        .diet-badge {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .diet-date {
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        .diet-title {
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .diet-goal {
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .diet-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+
+        .diet-stat {
+            text-align: center;
+        }
+
+        .diet-stat-value {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .diet-stat-label {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 0.25rem;
+        }
+
+        .diet-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-view,
+        .btn-download,
+        .btn-delete {
+            flex: 1;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-view {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .btn-view:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-download {
+            background: #10b981;
+            color: white;
+        }
+
+        .btn-download:hover {
+            background: #059669;
+        }
+
+        .btn-delete {
+            background: #ef4444;
+            color: white;
+        }
+
+        .btn-delete:hover {
+            background: #dc2626;
+        }
+
+        /* EMPTY STATE */
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .empty-state-icon {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+        }
+
+        .empty-state h3 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .empty-state p {
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        /* LOADING */
+        .loading {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .modal.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 2rem;
+            border-radius: 20px 20px 0 0;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .modal-header h2 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .diet-detail-section {
+            margin-bottom: 2rem;
+        }
+
+        .diet-detail-section h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .meal-card {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+        }
+
+        .meal-card h4 {
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .meal-items {
+            list-style: none;
+        }
+
+        .meal-items li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e0e0e0;
+            color: #666;
+        }
+
+        .meal-items li:last-child {
+            border-bottom: none;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .hero-header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .diets-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filters-content {
+                flex-direction: column;
+            }
+
+            .filter-group {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                🧠 GymMind
+            </a>
+            
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="dietas.html" class="active">Dietas</a></li>
+                    <li><a href="sobre.html">Sobre</a></li>
+                    <li><a href="perfil.html">Perfil</a></li>
+                </ul>
+            </nav>
+
+            <a href="index.html" class="logout-btn">Sair</a>
+
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+        <!-- HERO SECTION -->
+        <section class="hero-section">
+            <div class="hero-header">
+                <div class="hero-title">
+                    <h1>Minhas Dietas</h1>
+                    <p>Gerencie e acompanhe suas dietas personalizadas</p>
+                </div>
+                <a href="index.html" class="new-diet-btn">+ Nova Dieta</a>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3 id="totalDiets">0</h3>
+                    <p>Dietas Criadas</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="activeDiet">-</h3>
+                    <p>Dieta Ativa</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="lastUpdate">Nunca</h3>
+                    <p>Última Atualização</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="avgCalories">0</h3>
+                    <p>Média de Calorias</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FILTERS -->
+        <section class="filters-section">
+            <div class="filters-content">
+                <div class="filter-group">
+                    <label>Objetivo</label>
+                    <select id="filterGoal">
+                        <option value="">Todos os objetivos</option>
+                        <option value="emagrecimento">Emagrecimento</option>
+                        <option value="ganho-massa">Ganho de Massa</option>
+                        <option value="manutencao">Manutenção</option>
+                        <option value="definicao">Definição</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label>Período</label>
+                    <select id="filterPeriod">
+                        <option value="">Todos</option>
+                        <option value="7">Últimos 7 dias</option>
+                        <option value="30">Últimos 30 dias</option>
+                        <option value="90">Últimos 3 meses</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label>Buscar</label>
+                    <input type="text" id="searchInput" placeholder="Buscar por nome...">
+                </div>
+
+                <button class="clear-filters-btn" onclick="clearFilters()">Limpar Filtros</button>
+            </div>
+        </section>
+
+        <!-- DIETS SECTION -->
+        <section class="diets-section">
+            <div class="section-header">
+                <h2>Suas Dietas</h2>
+                <div class="view-toggle">
+                    <button class="active" onclick="setView('grid')">Grid</button>
+                    <button onclick="setView('list')">Lista</button>
+                </div>
+            </div>
+
+            <!-- LOADING -->
+            <div id="loadingState" class="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p style="color: white;">Carregando suas dietas...</p>
+            </div>
+
+            <!-- EMPTY STATE -->
+            <div id="emptyState" class="empty-state" style="display: none;">
+                <div class="empty-state-icon">🍽️</div>
+                <h3>Nenhuma dieta encontrada</h3>
+                <p>Crie sua primeira dieta personalizada agora!</p>
+                <a href="index.html" class="new-diet-btn">Criar Dieta</a>
+            </div>
+
+            <!-- DIETS GRID -->
+            <div id="dietsGrid" class="diets-grid">
+                <!-- Dietas serão carregadas aqui via JavaScript -->
+            </div>
+        </section>
+    </div>
+
+    <!-- MODAL DE DETALHES DA DIETA -->
+    <div id="dietModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Dieta Personalizada</h2>
+                <p id="modalSubtitle"></p>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Conteúdo será carregado via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="frontend-integration.js"></script>
+    <script>
+        // Estado Global
+        let allDiets = [];
+        let filteredDiets = [];
+        let currentView = 'grid';
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', () => {
+            loadDiets();
+            setupEventListeners();
+        });
+
+        // Configurar Event Listeners
+        function setupEventListeners() {
+            document.getElementById('filterGoal').addEventListener('change', applyFilters);
+            document.getElementById('filterPeriod').addEventListener('change', applyFilters);
+            document.getElementById('searchInput').addEventListener('input', applyFilters);
+        }
+
+        // Carregar Dietas
+        async function loadDiets() {
+            showLoading();
+
+            try {
+                // Tentar carregar do localStorage primeiro
+                const localDiets = loadLocalDiets();
+                
+                // Tentar carregar do backend (se tiver autenticação)
+                // const api = new GymMindAPI();
+                // const backendDiets = await api.getUserDiets();
+                
+                allDiets = localDiets; // ou combinar com backendDiets
+                filteredDiets = [...allDiets];
+                
+                updateStats();
+                renderDiets();
+                hideLoading();
+
+            } catch (error) {
+                console.error('Erro ao carregar dietas:', error);
+                hideLoading();
+                showEmptyState();
+            }
+        }
+
+        // Carregar dietas do localStorage
+        function loadLocalDiets() {
+            const diets = [];
+            const keys = Object.keys(localStorage);
+            
+            keys.forEach(key => {
+                if (key.startsWith('diet_')) {
+                    try {
+                        const diet = JSON.parse(localStorage.getItem(key));
+                        diets.push(diet);
+                    } catch (e) {
+                        console.error('Erro ao parsear dieta:', e);
+                    }
+                }
+            });
+
+            // Ordenar por data (mais recente primeiro)
+            return diets.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        }
+
+        // Atualizar Estatísticas
+        function updateStats() {
+            document.getElementById('totalDiets').textContent = allDiets.length;
+            
+            if (allDiets.length > 0) {
+                const lastDiet = allDiets[0];
+                document.getElementById('activeDiet').textContent = lastDiet.personal.objetivo || 'N/A';
+                document.getElementById('lastUpdate').textContent = formatDate(lastDiet.createdAt);
+                
+                const avgCal = allDiets.reduce((sum, d) => sum + parseInt(d.personal.calorias || 0), 0) / allDiets.length;
+                document.getElementById('avgCalories').textContent = Math.round(avgCal);
+            }
+        }
+
+        // Renderizar Dietas
+        function renderDiets() {
+            const grid = document.getElementById('dietsGrid');
+            
+            if (filteredDiets.length === 0) {
+                showEmptyState();
+                return;
+            }
+
+            grid.innerHTML = filteredDiets.map(diet => createDietCard(diet)).join('');
+            
+            document.getElementById('emptyState').style.display = 'none';
+            grid.style.display = currentView === 'grid' ? 'grid' : 'block';
+        }
+
+        // Criar Card de Dieta
+        function createDietCard(diet) {
+            const date = formatDate(diet.createdAt);
+            const goal = diet.personal.objetivo || 'Não especificado';
+            const calories = diet.personal.calorias || 'N/A';
+            const weight = diet.personal.peso || 'N/A';
+            const plan = diet.planType || 'Padrão';
+
+            return `
+                <div class="diet-card" onclick="viewDiet('${diet.id}')">
+                    <div class="diet-header">
+                        <span class="diet-badge">${plan}</span>
+                        <span class="diet-date">${date}</span>
+                    </div>
+                    <h3 class="diet-title">${diet.personal.nome || 'Dieta Personalizada'}</h3>
+                    <p class="diet-goal">🎯 ${goal}</p>
+                    
+                    <div class="diet-stats">
+                        <div class="diet-stat">
+                            <div class="diet-stat-value">${calories}</div>
+                            <div class="diet-stat-label">Calorias/dia</div>
+                        </div>
+                        <div class="diet-stat">
+                            <div class="diet-stat-value">${weight}kg</div>
+                            <div class="diet-stat-label">Peso</div>
+                        </div>
+                    </div>
+
+                    <div class="diet-actions" onclick="event.stopPropagation()">
+                        <button class="btn-view" onclick="viewDiet('${diet.id}')">Ver Detalhes</button>
+                        ${diet.pdfUrl ? `<button class="btn-download" onclick="downloadPDF('${diet.id}')">📥 PDF</button>` : ''}
+                        <button class="btn-delete" onclick="deleteDiet('${diet.id}')">🗑️</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Ver Detalhes da Dieta
+        function viewDiet(dietId) {
+            const diet = allDiets.find(d => d.id === dietId);
+            if (!diet) return;
+
+            document.getElementById('modalTitle').textContent = diet.personal.nome || 'Dieta Personalizada';
+            document.getElementById('modalSubtitle').textContent = `Criada em ${formatDate(diet.createdAt)} | ${diet.personal.objetivo}`;
+
+            const modalBody = document.getElementById('modalBody');
+            modalBody.innerHTML = `
+                <div class="diet-detail-section">
+                    <h3>📊 Dados Pessoais</h3>
+                    <div class="meal-card">
+                        <p><strong>Peso:</strong> ${diet.personal.peso}kg</p>
+                        <p><strong>Altura:</strong> ${diet.personal.altura}cm</p>
+                        <p><strong>Idade:</strong> ${diet.personal.idade} anos</p>
+                        <p><strong>Objetivo:</strong> ${diet.personal.objetivo}</p>
+                        <p><strong>Calorias Diárias:</strong> ${diet.personal.calorias}</p>
+                    </div>
+                </div>
+
+                <div class="diet-detail-section">
+                    <h3>🍽️ Refeições</h3>
+                    ${renderMeals(diet.meals)}
+                </div>
+
+                ${diet.training ? `
+                <div class="diet-detail-section">
+                    <h3>💪 Treino</h3>
+                    <div class="meal-card">
+                        <p><strong>Tipo:</strong> ${diet.training.tipo}</p>
+                        <p><strong>Frequência:</strong> ${diet.training.frequencia}</p>
+                        <p><strong>Duração:</strong> ${diet.training.duracao}</p>
+                    </div>
+                </div>
+                ` : ''}
+
+                ${diet.pdfUrl ? `
+                <div class="diet-detail-section">
+                    <button class="new-diet-btn" onclick="downloadPDF('${diet.id}')" style="width: 100%;">
+                        📥 Baixar PDF Completo
+                    </button>
+                </div>
+                ` : ''}
+            `;
+
+            document.getElementById('dietModal').classList.add('active');
+        }
+
+        // Renderizar Refeições
+        function renderMeals(meals) {
+            if (!meals) return '<p>Nenhuma refeição cadastrada</p>';
+
+            const mealNames = {
+                cafe: '☕ Café da Manhã',
+                almoco: '🍽️ Almoço',
+                lanche: '🥪 Lanche',
+                jantar: '🍴 Jantar',
+                ceia: '🌙 Ceia'
+            };
+
+            return Object.entries(meals)
+                .map(([key, items]) => {
+                    if (!items || items.length === 0) return '';
+                    return `
+                        <div class="meal-card">
+                            <h4>${mealNames[key] || key}</h4>
+                            <ul class="meal-items">
+                                ${items.map(item => `<li>• ${item}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                })
+                .join('');
+        }
+
+        // Download PDF
+        function downloadPDF(dietId) {
+            const diet = allDiets.find(d => d.id === dietId);
+            if (!diet || !diet.pdfUrl) {
+                alert('PDF não disponível para esta dieta');
+                return;
+            }
+
+            window.open(diet.pdfUrl, '_blank');
+        }
+
+        // Deletar Dieta
+        function deleteDiet(dietId) {
+            if (!confirm('Tem certeza que deseja excluir esta dieta?')) return;
+
+            localStorage.removeItem(`diet_${dietId}`);
+            allDiets = allDiets.filter(d => d.id !== dietId);
+            applyFilters();
+            updateStats();
+
+            alert('Dieta excluída com sucesso!');
+        }
+
+        // Aplicar Filtros
+        function applyFilters() {
+            const goalFilter = document.getElementById('filterGoal').value;
+            const periodFilter = document.getElementById('filterPeriod').value;
+            const searchText = document.getElementById('searchInput').value.toLowerCase();
+
+            filteredDiets = allDiets.filter(diet => {
+                // Filtro de objetivo
+                if (goalFilter && diet.personal.objetivo !== goalFilter) return false;
+
+                // Filtro de período
+                if (periodFilter) {
+                    const daysAgo = new Date();
+                    daysAgo.setDate(daysAgo.getDate() - parseInt(periodFilter));
+                    if (new Date(diet.createdAt) < daysAgo) return false;
+                }
+
+                // Filtro de busca
+                if (searchText) {
+                    const searchableText = `${diet.personal.nome} ${diet.personal.objetivo}`.toLowerCase();
+                    if (!searchableText.includes(searchText)) return false;
+                }
+
+                return true;
+            });
+
+            renderDiets();
+        }
+
+        // Limpar Filtros
+        function clearFilters() {
+            document.getElementById('filterGoal').value = '';
+            document.getElementById('filterPeriod').value = '';
+            document.getElementById('searchInput').value = '';
+            applyFilters();
+        }
+
+        // Alternar Visualização
+        function setView(view) {
+            currentView = view;
+            document.querySelectorAll('.view-toggle button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            renderDiets();
+        }
+
+        // Fechar Modal
+        function closeModal() {
+            document.getElementById('dietModal').classList.remove('active');
+        }
+
+        // Toggle Menu Mobile
+        function toggleMenu() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        }
+
+        // Helpers
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('pt-BR', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric'
+            });
+        }
+
+        function showLoading() {
+            document.getElementById('loadingState').style.display = 'block';
+            document.getElementById('dietsGrid').style.display = 'none';
+            document.getElementById('emptyState').style.display = 'none';
+        }
+
+        function hideLoading() {
+            document.getElementById('loadingState').style.display = 'none';
+        }
+
+        function showEmptyState() {
+            document.getElementById('emptyState').style.display = 'block';
+            document.getElementById('dietsGrid').style.display = 'none';
+        }
+
+        // Fechar modal ao clicar fora
+        document.getElementById('dietModal').addEventListener('click', (e) => {
+            if (e.target.id === 'dietModal') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
