@@ -1,61 +1,29 @@
 // ====================================
 // GYMMIND - INTEGRAÇÃO FRONTEND-BACKEND
 // ====================================
+// Este arquivo mantém compatibilidade com código existente
+// mas usa o novo apiService internamente
 
-// Configuração da API (CORRIGIDO PARA PORTA 8000)
-const API_BASE_URL = 'http://localhost:3003/api';
-
-// Utilitários para API
+// Classe de compatibilidade (redireciona para apiService)
 class GymMindAPI {
-  static async request(endpoint, options = {}) {
-    const url = `${API_BASE_URL}${endpoint}`;
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-        ...options.headers
-      },
-      ...options
-    };
-
-    try {
-      console.log(`🌐 Fazendo requisição: ${config.method || 'GET'} ${url}`);
-      const response = await fetch(url, config);
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message || 'Erro na requisição');
-      }
-
-      console.log('✅ Resposta recebida:', data);
-      return data;
-    } catch (error) {
-      console.error('❌ Erro na requisição:', error);
-      throw error;
-    }
-  }
-
   static async generateDiet(userData) {
-    return await this.request('/generate-diet', {
-      method: 'POST',
-      body: JSON.stringify(userData)
-    });
+    return await apiService.generateDiet(userData);
   }
 
   static async processPayment(userData, planType) {
-    return await this.request('/process-payment', {
-      method: 'POST', 
-      body: JSON.stringify({ userData, planType })
-    });
+    return await apiService.processPayment(planType, userData);
   }
 
   static async testAI() {
-    return await this.request('/test-ai', {
-      method: 'POST'
-    });
+    return await apiService.testAI();
   }
 
   static async healthCheck() {
-    return await this.request('/health');
+    return await apiService.healthCheck();
+  }
+
+  static async request(endpoint, options = {}) {
+    return await apiService.request(endpoint, options);
   }
 }
 
@@ -301,9 +269,7 @@ function goToUserDashboardIntegrated() {
 
 function downloadDietPDF(url) {
   if (url) {
-    // Garantir que a URL seja absoluta
-    const fullUrl = url.startsWith('http') ? url : `http://localhost:8000${url}`;
-    window.open(fullUrl, '_blank');
+    apiService.downloadPDF(url);
   }
 }
 

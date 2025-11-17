@@ -1,4 +1,24 @@
 {
+  "name": "gymmind-frontend",
+  "version": "1.0.0",
+  "description": "GymMind - Frontend integrado com backend de dietas personalizadas",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx http-server -p ${PORT:-8080} -c-1",
+    "dev": "npx http-server -p 5500 -c-1 -o",
+    "build": "echo 'Frontend estático - nada para buildar'"
+  },
+  "keywords": [
+    "gymmind",
+    "dieta",
+    "fitness",
+    "frontend"
+  ],
+  "author": "GymMind Team",
+  "license": "MIT",
+  "dependencies": {
+    "http-server": "^14.1.1"
+  },
   "devDependencies": {
     "tailwindcss": "^4.1.8"
   }
