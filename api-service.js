@@ -3,6 +3,8 @@
 // ========================================
 
 // URL do backend em produção
+// NOTA: Se tiver erro de CORS, adicione o proxy temporário:
+// const API_BASE_URL = 'https://cors-anywhere.herokuapp.com/https://gm-back-production.up.railway.app/api';
 const API_BASE_URL = 'https://gm-back-production.up.railway.app/api';
 
 /**
