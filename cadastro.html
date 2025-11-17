@@ -231,10 +231,10 @@
     <div class="fixed top-20 right-20 w-32 h-32 bg-indigo-300/20 rounded-full blur-3xl floating-element"></div>
     <div class="fixed bottom-32 left-10 w-24 h-24 bg-purple-300/20 rounded-full blur-3xl floating-element" style="animation-delay: -2s;"></div>
 
-    <script>
-        // Configuração da API (ALTERAR PARA SUA URL)
-        const API_BASE_URL = 'http://localhost:3000/api';
+    <!-- API Service -->
+    <script src="api-service.js"></script>
 
+    <script>
         // Elementos do DOM
         const registerForm = document.getElementById('registerForm');
         const registerBtn = document.getElementById('registerBtn');
@@ -249,10 +249,8 @@
 
         // Verificar se já está logado
         document.addEventListener('DOMContentLoaded', function() {
-            const token = localStorage.getItem('gymMindToken');
-            if (token) {
-                window.location.href = 'dietas.html';
-            }
+            redirectIfAuthenticated('dietas.html');
+            checkBackendHealth();
         });
 
         // Verificar força da senha em tempo real
@@ -326,20 +324,20 @@
         // Submit do formulário
         registerForm.addEventListener('submit', async function(e) {
             e.preventDefault();
-            
-            const nome = document.getElementById('nome').value.trim();
+
+            const name = document.getElementById('nome').value.trim();
             const email = document.getElementById('email').value.trim();
             const password = document.getElementById('password').value;
             const confirmPassword = document.getElementById('confirmPassword').value;
             const terms = document.getElementById('terms').checked;
 
             // Validações
-            if (!nome || !email || !password || !confirmPassword) {
+            if (!name || !email || !password || !confirmPassword) {
                 showError('Por favor, preencha todos os campos');
                 return;
             }
 
-            if (nome.length < 3) {
+            if (name.length < 3) {
                 showError('Nome deve ter pelo menos 3 caracteres');
                 return;
             }
@@ -367,43 +365,25 @@
             setLoading(true);
 
             try {
-                const response = await fetch(`${API_BASE_URL}/auth/register`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ nome, email, password, confirmPassword })
-                });
+                const response = await apiService.register(name, email, password);
 
-                const data = await response.json();
-
-                if (response.ok && data.success) {
-                    // Salvar token e dados do usuário
-                    localStorage.setItem('gymMindToken', data.token);
-                    localStorage.setItem('gymMindUser', JSON.stringify(data.user || { nome, email }));
-                    
+                if (response.success) {
                     // Mostrar sucesso
                     showSuccess();
-                    
+
                     // Redirecionar após 2 segundos
                     setTimeout(() => {
                         window.location.href = 'dietas.html';
                     }, 2000);
                 } else {
-                    throw new Error(data.message || 'Erro ao criar conta');
+                    throw new Error(response.error || 'Erro ao criar conta');
                 }
             } catch (error) {
-                console.error('Erro:', error);
-                showError(error.message || 'Erro ao conectar com o servidor. Tente novamente.');
+                console.error('❌ Erro no cadastro:', error);
+                showError(error.message || 'Erro ao criar conta. Tente novamente.');
                 setLoading(false);
             }
         });
-
-        // Função para validar email
-        function validateEmail(email) {
-            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return re.test(email);
-        }
     </script>
 </body>
 </html>

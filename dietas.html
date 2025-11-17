@@ -745,6 +745,7 @@
     </div>
 
     <!-- SCRIPTS -->
+    <script src="api-service.js"></script>
     <script src="frontend-integration.js"></script>
     <script>
         // Estado Global
@@ -770,16 +771,40 @@
             showLoading();
 
             try {
-                // Tentar carregar do localStorage primeiro
+                // Carregar do localStorage
                 const localDiets = loadLocalDiets();
-                
-                // Tentar carregar do backend (se tiver autenticação)
-                // const api = new GymMindAPI();
-                // const backendDiets = await api.getUserDiets();
-                
-                allDiets = localDiets; // ou combinar com backendDiets
+
+                // Tentar carregar do backend se estiver autenticado
+                let backendDiets = [];
+                if (apiService.isAuthenticated()) {
+                    try {
+                        const response = await apiService.getMyDiets();
+                        if (response.success && response.data) {
+                            backendDiets = response.data.map(diet => ({
+                                id: diet.id,
+                                personal: {
+                                    nome: 'Dieta do Backend',
+                                    objetivo: diet.planType || 'custom',
+                                    calorias: 'N/A',
+                                    peso: 'N/A',
+                                    altura: 'N/A',
+                                    idade: 'N/A'
+                                },
+                                planType: diet.planType || 'custom',
+                                createdAt: diet.createdAt,
+                                pdfUrl: diet.pdfInfo?.url,
+                                meals: {}
+                            }));
+                        }
+                    } catch (error) {
+                        console.warn('Erro ao carregar dietas do backend:', error);
+                    }
+                }
+
+                // Combinar dietas locais e do backend
+                allDiets = [...backendDiets, ...localDiets];
                 filteredDiets = [...allDiets];
-                
+
                 updateStats();
                 renderDiets();
                 hideLoading();

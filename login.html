@@ -208,10 +208,10 @@
     <div class="fixed top-20 right-20 w-32 h-32 bg-indigo-300/20 rounded-full blur-3xl floating-element"></div>
     <div class="fixed bottom-32 left-10 w-24 h-24 bg-purple-300/20 rounded-full blur-3xl floating-element" style="animation-delay: -2s;"></div>
 
-    <script>
-        // Configuração da API (ALTERAR PARA SUA URL)
-        const API_BASE_URL = 'http://localhost:3000/api';
+    <!-- API Service -->
+    <script src="api-service.js"></script>
 
+    <script>
         // Elementos do DOM
         const loginForm = document.getElementById('loginForm');
         const loginBtn = document.getElementById('loginBtn');
@@ -222,17 +222,15 @@
 
         // Verificar se já está logado
         document.addEventListener('DOMContentLoaded', function() {
-            const token = localStorage.getItem('gymMindToken');
-            if (token) {
-                window.location.href = 'dietas.html';
-            }
+            redirectIfAuthenticated('dietas.html');
+            checkBackendHealth();
         });
 
         // Função para mostrar erro
         function showError(message) {
             errorText.textContent = message;
             errorMessage.style.display = 'block';
-            
+
             setTimeout(() => {
                 errorMessage.style.display = 'none';
             }, 5000);
@@ -256,8 +254,8 @@
         // Submit do formulário
         loginForm.addEventListener('submit', async function(e) {
             e.preventDefault();
-            
-            const email = document.getElementById('email').value;
+
+            const email = document.getElementById('email').value.trim();
             const password = document.getElementById('password').value;
             const rememberMe = document.getElementById('rememberMe').checked;
 
@@ -280,51 +278,28 @@
             setLoading(true);
 
             try {
-                const response = await fetch(`${API_BASE_URL}/auth/login`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ email, password })
-                });
+                const response = await apiService.login(email, password);
 
-                const data = await response.json();
-
-                if (response.ok && data.success) {
-                    // Salvar token e dados do usuário
-                    localStorage.setItem('gymMindToken', data.token);
-                    localStorage.setItem('gymMindUser', JSON.stringify(data.user));
-                    
-                    // Se "Lembrar-me" marcado, salvar por mais tempo
+                if (response.success) {
+                    // Se "Lembrar-me" marcado, salvar preferência
                     if (rememberMe) {
                         localStorage.setItem('gymMindRememberMe', 'true');
                     }
 
-                    // Redirecionar para dietas
-                    window.location.href = 'dietas.html';
+                    // Mostrar sucesso e redirecionar
+                    showNotification('Login realizado com sucesso! Redirecionando...', 'success', 2000);
+
+                    setTimeout(() => {
+                        window.location.href = 'dietas.html';
+                    }, 1000);
                 } else {
-                    throw new Error(data.message || 'Erro ao fazer login');
+                    throw new Error(response.error || 'Erro ao fazer login');
                 }
             } catch (error) {
-                console.error('Erro:', error);
-                showError(error.message || 'Erro ao conectar com o servidor. Tente novamente.');
+                console.error('❌ Erro no login:', error);
+                showError(error.message || 'Email ou senha incorretos. Tente novamente.');
                 setLoading(false);
             }
-        });
-
-        // Função para validar email
-        function validateEmail(email) {
-            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return re.test(email);
-        }
-
-        // Prevenir enter em campos não-submit
-        document.querySelectorAll('input').forEach(input => {
-            input.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter' && this.type !== 'submit') {
-                    e.preventDefault();
-                }
-            });
         });
     </script>
 </body>
