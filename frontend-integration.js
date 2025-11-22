@@ -421,8 +421,10 @@ async function testBackendConnection() {
   try {
     const health = await GymMindAPI.healthCheck();
     console.log('✅ Backend conectado:', health);
-    
-    // Testar IA se as chaves estiverem configuradas
+
+    // TESTE DA IA TEMPORARIAMENTE DESABILITADO
+    // Descomentar quando a chave da OpenAI estiver funcionando:
+    /*
     if (health.services?.ai === 'Configurado' || health.services?.anthropic === 'Configurado') {
       try {
         const aiTest = await GymMindAPI.testAI();
@@ -431,7 +433,9 @@ async function testBackendConnection() {
         console.warn('⚠️ IA não configurada:', aiError.message);
       }
     }
-    
+    */
+    console.log('⚠️ Teste de IA desabilitado. Ajuste a chave OpenAI no backend para habilitar.');
+
     return true;
   } catch (error) {
     console.error('❌ Backend não conectado:', error);
