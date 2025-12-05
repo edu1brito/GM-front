@@ -14,9 +14,9 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #F5F5F4;
             min-height: 100vh;
-            color: #333;
+            color: #2C2C2C;
         }
 
         /* HEADER */
@@ -39,13 +39,16 @@
         }
 
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 700;
-            color: #667eea;
+            color: white;
             text-decoration: none;
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            background: #CC785C;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
         }
 
         .nav-links {
@@ -56,7 +59,7 @@
 
         .nav-links a {
             text-decoration: none;
-            color: #333;
+            color: #2C2C2C;
             font-weight: 500;
             transition: color 0.3s;
             position: relative;
@@ -64,7 +67,7 @@
 
         .nav-links a:hover,
         .nav-links a.active {
-            color: #667eea;
+            color: #CC785C;
         }
 
         .nav-links a.active::after {
@@ -74,22 +77,23 @@
             left: 0;
             width: 100%;
             height: 2px;
-            background: #667eea;
+            background: #CC785C;
         }
 
         .logout-btn {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: #CC785C;
             color: white;
             padding: 0.5rem 1.5rem;
             border-radius: 25px;
             text-decoration: none;
             font-weight: 600;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
         }
 
         .logout-btn:hover {
+            background: #B8674C;
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 5px 15px rgba(204, 120, 92, 0.3);
         }
 
         /* MOBILE MENU */
@@ -118,9 +122,10 @@
         /* PROFILE HEADER */
         .profile-header {
             background: white;
-            border-radius: 20px;
+            border-radius: 12px;
             padding: 2rem;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid #E5E5E5;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
             margin-bottom: 2rem;
             display: flex;
             align-items: center;
@@ -131,18 +136,19 @@
             width: 120px;
             height: 120px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: #F5F5F4;
+            border: 3px solid #CC785C;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 3rem;
-            color: white;
+            color: #CC785C;
             flex-shrink: 0;
         }
 
         .profile-info h1 {
             font-size: 2rem;
-            color: #333;
+            color: #2C2C2C;
             margin-bottom: 0.5rem;
         }
 
@@ -166,33 +172,34 @@
         }
 
         .badge-premium {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: #CC785C;
             color: white;
         }
 
         .badge-verified {
-            background: #10b981;
+            background: #CC785C;
             color: white;
         }
 
         .badge-member {
-            background: #f59e0b;
+            background: #CC785C;
             color: white;
         }
 
         /* TABS */
         .tabs-container {
             background: white;
-            border-radius: 20px;
+            border-radius: 12px;
             padding: 1.5rem;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid #E5E5E5;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
             margin-bottom: 2rem;
         }
 
         .tabs {
             display: flex;
             gap: 1rem;
-            border-bottom: 2px solid #f0f0f0;
+            border-bottom: 1px solid #E5E5E5;
             margin-bottom: 2rem;
             overflow-x: auto;
         }
@@ -210,12 +217,12 @@
         }
 
         .tab:hover {
-            color: #667eea;
+            color: #CC785C;
         }
 
         .tab.active {
-            color: #667eea;
-            border-bottom-color: #667eea;
+            color: #CC785C;
+            border-bottom-color: #CC785C;
         }
 
         /* TAB CONTENT */
@@ -234,10 +241,10 @@
 
         .form-section h3 {
             font-size: 1.3rem;
-            color: #333;
+            color: #2C2C2C;
             margin-bottom: 1rem;
             padding-bottom: 0.5rem;
-            border-bottom: 2px solid #f0f0f0;
+            border-bottom: 1px solid #E5E5E5;
         }
 
         .form-grid {
@@ -253,7 +260,7 @@
 
         .form-group label {
             font-weight: 600;
-            color: #333;
+            color: #2C2C2C;
             margin-bottom: 0.5rem;
         }
 
@@ -261,21 +268,23 @@
         .form-group select,
         .form-group textarea {
             padding: 0.75rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
+            border: 1px solid #D4D4D4;
+            border-radius: 8px;
             font-size: 1rem;
-            transition: border-color 0.3s;
+            background: #FAFAFA;
+            transition: border-color 0.3s, background 0.3s;
         }
 
         .form-group input:focus,
         .form-group select:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: #667eea;
+            border-color: #CC785C;
+            background: white;
         }
 
         .form-group input[readonly] {
-            background: #f5f5f5;
+            background: #F5F5F4;
             cursor: not-allowed;
         }
 
@@ -286,11 +295,11 @@
 
         /* BUTTONS */
         .btn-primary {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: #CC785C;
             color: white;
             padding: 1rem 2rem;
             border: none;
-            border-radius: 12px;
+            border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
@@ -298,16 +307,17 @@
         }
 
         .btn-primary:hover {
+            background: #B8674C;
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 4px 12px rgba(204, 120, 92, 0.3);
         }
 
         .btn-secondary {
-            background: #f5f5f5;
-            color: #666;
+            background: #F5F5F4;
+            color: #2C2C2C;
             padding: 1rem 2rem;
-            border: none;
-            border-radius: 12px;
+            border: 1px solid #D4D4D4;
+            border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
@@ -315,7 +325,8 @@
         }
 
         .btn-secondary:hover {
-            background: #e0e0e0;
+            background: #E5E5E5;
+            border-color: #CC785C;
         }
 
         .btn-danger {
@@ -349,15 +360,16 @@
         }
 
         .stat-card {
-            background: linear-gradient(135deg, #667eea15, #764ba215);
+            background: white;
             padding: 1.5rem;
-            border-radius: 15px;
-            border-left: 4px solid #667eea;
+            border-radius: 12px;
+            border: 1px solid #E5E5E5;
+            border-left: 4px solid #CC785C;
         }
 
         .stat-card h4 {
             font-size: 2rem;
-            color: #667eea;
+            color: #CC785C;
             margin-bottom: 0.5rem;
         }
 
@@ -368,9 +380,10 @@
 
         /* PROGRESS CARD */
         .progress-card {
-            background: #f8f9fa;
+            background: white;
             padding: 1.5rem;
-            border-radius: 15px;
+            border-radius: 12px;
+            border: 1px solid #E5E5E5;
             margin-bottom: 1rem;
         }
 
@@ -382,25 +395,25 @@
         }
 
         .progress-header h4 {
-            color: #333;
+            color: #2C2C2C;
         }
 
         .progress-value {
-            color: #667eea;
+            color: #CC785C;
             font-weight: 700;
         }
 
         .progress-bar {
             width: 100%;
             height: 10px;
-            background: #e0e0e0;
+            background: #F5F5F4;
             border-radius: 10px;
             overflow: hidden;
         }
 
         .progress-fill {
             height: 100%;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: #CC785C;
             border-radius: 10px;
             transition: width 0.5s ease;
         }
@@ -415,13 +428,14 @@
             justify-content: space-between;
             align-items: center;
             padding: 1.5rem;
-            background: #f8f9fa;
+            background: white;
+            border: 1px solid #E5E5E5;
             border-radius: 12px;
             margin-bottom: 1rem;
         }
 
         .settings-item-info h4 {
-            color: #333;
+            color: #2C2C2C;
             margin-bottom: 0.25rem;
         }
 
@@ -468,7 +482,7 @@
         }
 
         .toggle-switch input:checked + .toggle-slider {
-            background: #667eea;
+            background: #CC785C;
         }
 
         .toggle-switch input:checked + .toggle-slider:before {
@@ -488,7 +502,7 @@
             top: 0;
             bottom: 0;
             width: 2px;
-            background: linear-gradient(to bottom, #667eea, #764ba2);
+            background: #CC785C;
         }
 
         .timeline-item {
@@ -504,19 +518,20 @@
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background: #667eea;
+            background: #CC785C;
             border: 3px solid white;
-            box-shadow: 0 0 0 3px #667eea;
+            box-shadow: 0 0 0 3px #CC785C33;
         }
 
         .timeline-content {
-            background: #f8f9fa;
+            background: white;
             padding: 1.5rem;
             border-radius: 12px;
+            border: 1px solid #E5E5E5;
         }
 
         .timeline-content h4 {
-            color: #333;
+            color: #2C2C2C;
             margin-bottom: 0.5rem;
         }
 
@@ -611,7 +626,7 @@
     <header class="header">
         <div class="header-content">
             <a href="index.html" class="logo">
-                🧠 GymMind
+                GM
             </a>
             
             <nav>

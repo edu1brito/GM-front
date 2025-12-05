@@ -1,0 +1,157 @@
+/* GymMind - Tema Clean inspirado no Claude */
+
+* {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Hero Background */
+.hero-gradient {
+    background: linear-gradient(135deg, #2C2C2C 0%, #1F1F1F 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-gradient::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.03;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Logo simples */
+.logo-brain {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    background: #CC785C;
+    border-radius: 8px;
+    position: relative;
+}
+
+.logo-brain::before {
+    content: 'GM';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+    font-weight: 800;
+    color: white;
+}
+
+/* Cards modernos */
+.glass-card {
+    background: #FFFFFF;
+    border: 1px solid #E5E5E5;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Inputs clean */
+.modern-input, .input-modern {
+    border: 1px solid #D4D4D4;
+    transition: all 0.2s;
+    background: #FAFAFA;
+}
+
+.modern-input:focus, .input-modern:focus {
+    outline: none;
+    border-color: #CC785C;
+    background: #FFFFFF;
+    box-shadow: 0 0 0 3px rgba(204, 120, 92, 0.1);
+}
+
+/* Botões clean */
+.btn-primary {
+    background: #CC785C;
+    transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+    background: #B8674C;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(204, 120, 92, 0.25);
+}
+
+.btn-primary:disabled {
+    background: #D4D4D4;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Select customizado */
+.custom-select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23737373' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1.2rem;
+    padding-right: 3rem;
+}
+
+/* Scrollbar clean */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #FAFAFA;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #D4D4D4;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #A3A3A3;
+}
+
+/* Botão de navegação clean */
+.nav-btn {
+    border: 1px solid #D4D4D4;
+    padding: 8px 20px;
+    border-radius: 8px;
+    transition: all 0.2s;
+}
+
+.nav-btn:hover {
+    background: #CC785C;
+    color: white;
+    border-color: #CC785C;
+}
+
+/* Links de navegação */
+.nav-link {
+    font-weight: 500;
+    color: #525252;
+    transition: color 0.2s;
+    font-size: 15px;
+}
+
+.nav-link:hover {
+    color: #171717;
+}
+
+/* Animações suaves */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-up {
+    animation: slideIn 0.6s ease-out forwards;
+}
+
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }

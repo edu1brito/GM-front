@@ -12,7 +12,7 @@
         }
 
         .hero-bg {
-            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #14b8a6 100%);
+            background: linear-gradient(135deg, #2C2C2C 0%, #1F1F1F 100%);
             position: relative;
         }
 
@@ -20,27 +20,29 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.1);
         }
 
         .plan-card {
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             position: relative;
             overflow: hidden;
+            border: 1px solid #E5E5E5;
         }
 
         .plan-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+            border-color: #D4D4D4;
         }
 
         .plan-card.popular {
-            transform: scale(1.05);
-            border: 3px solid #22c55e;
+            transform: scale(1.02);
+            border: 2px solid #CC785C;
         }
 
         .plan-card.popular:hover {
-            transform: scale(1.05) translateY(-8px);
+            transform: scale(1.02) translateY(-4px);
         }
 
         .popular-badge {
@@ -48,59 +50,43 @@
             top: -10px;
             left: 50%;
             transform: translateX(-50%);
-            background: linear-gradient(135deg, #22c55e, #16a34a);
+            background: #CC785C;
             color: white;
             padding: 8px 20px;
             border-radius: 20px;
             font-weight: 600;
             font-size: 14px;
-            box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+            box-shadow: 0 2px 8px rgba(204, 120, 92, 0.2);
         }
 
         .price {
-            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #CC785C;
         }
 
         .check-icon {
-            color: #22c55e;
+            color: #CC785C;
             font-weight: bold;
         }
 
-        @keyframes pulse {
-            0%, 100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0.8;
-            }
-        }
-
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-
         .btn-primary {
-            background: linear-gradient(135deg, #22c55e, #16a34a);
-            transition: all 0.3s ease;
+            background: #CC785C;
+            transition: all 0.2s ease;
         }
 
         .btn-primary:hover {
-            background: linear-gradient(135deg, #16a34a, #15803d);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(34, 197, 94, 0.3);
+            background: #B8674C;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(204, 120, 92, 0.2);
         }
 
         .btn-secondary {
-            background: linear-gradient(135deg, #6b7280, #4b5563);
-            transition: all 0.3s ease;
+            background: #CC785C;
+            transition: all 0.2s ease;
         }
 
         .btn-secondary:hover {
-            background: linear-gradient(135deg, #4b5563, #374151);
-            transform: translateY(-2px);
+            background: #B8674C;
+            transform: translateY(-1px);
         }
 
         .feature-list li {
@@ -112,7 +98,7 @@
             content: '✓';
             position: absolute;
             left: 0;
-            color: #22c55e;
+            color: #CC785C;
             font-weight: bold;
             font-size: 16px;
         }
@@ -122,14 +108,14 @@
                 transform: none;
                 margin-top: 20px;
             }
-            
+
             .plan-card.popular:hover {
-                transform: translateY(-4px);
+                transform: translateY(-2px);
             }
         }
 
         .guarantee-badge {
-            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            background: #CC785C;
             color: white;
             padding: 4px 12px;
             border-radius: 15px;
@@ -138,39 +124,54 @@
         }
 
         .testimonial-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 16px;
+            background: white;
+            border: 1px solid #E5E5E5;
+            border-radius: 12px;
             padding: 24px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            transition: transform 0.2s ease;
         }
 
         .testimonial-card:hover {
-            transform: translateY(-4px);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
 
         .footer-section {
-            background: linear-gradient(135deg, #1f2937, #111827);
+            background: #2C2C2C;
+        }
+
+        .logo-box {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: #CC785C;
+            border-radius: 6px;
+            color: white;
+            font-weight: 700;
+            font-size: 18px;
         }
     </style>
 </head>
 
-<body class="bg-gray-50">
+<body style="background-color: #F5F5F4;">
     <!-- Header -->
     <header class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-sm shadow-sm">
         <nav class="container mx-auto px-4 py-4">
             <div class="flex items-center justify-between">
-                <div class="text-2xl font-bold">
-                    <span class="text-blue-600">Gym</span><span class="text-green-500">Mind</span>
+                <div class="flex items-center gap-2">
+                    <div class="logo-box">GM</div>
+                    <span class="text-xl font-semibold" style="color: #2C2C2C;">GymMind</span>
                 </div>
                 
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="index.html" class="text-gray-700 hover:text-green-500 transition">Home</a>
-                    <a href="dietas.html" class="text-gray-700 hover:text-green-500 transition">Dietas</a>
-                    <a href="sobre.html" class="text-gray-700 hover:text-green-500 transition">Sobre</a>
-                    <a href="perfil.html" class="text-gray-700 hover:text-green-500 transition">Perfil</a>
-                    <button onclick="handleLogout()" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">
+                    <a href="index.html" style="color: #2C2C2C;" class="hover:opacity-70 transition">Home</a>
+                    <a href="dietas.html" style="color: #2C2C2C;" class="hover:opacity-70 transition">Dietas</a>
+                    <a href="sobre.html" style="color: #2C2C2C;" class="hover:opacity-70 transition">Sobre</a>
+                    <a href="perfil.html" style="color: #2C2C2C;" class="hover:opacity-70 transition">Perfil</a>
+                    <button onclick="handleLogout()" style="background-color: #CC785C;" class="text-white px-4 py-2 rounded-lg hover:opacity-90 transition">
                         Sair
                     </button>
                 </div>
@@ -186,11 +187,11 @@
             <!-- Menu Mobile Dropdown -->
             <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-gray-200 mt-4">
                 <div class="flex flex-col gap-4 py-4">
-                    <a href="index.html" class="text-gray-700 hover:text-green-500">Home</a>
-                    <a href="dietas.html" class="text-gray-700 hover:text-green-500">Dietas</a>
-                    <a href="sobre.html" class="text-gray-700 hover:text-green-500">Sobre</a>
-                    <a href="perfil.html" class="text-gray-700 hover:text-green-500">Perfil</a>
-                    <button onclick="handleLogout()" class="text-left bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">
+                    <a href="index.html" style="color: #2C2C2C;" class="hover:opacity-70">Home</a>
+                    <a href="dietas.html" style="color: #2C2C2C;" class="hover:opacity-70">Dietas</a>
+                    <a href="sobre.html" style="color: #2C2C2C;" class="hover:opacity-70">Sobre</a>
+                    <a href="perfil.html" style="color: #2C2C2C;" class="hover:opacity-70">Perfil</a>
+                    <button onclick="handleLogout()" style="background-color: #CC785C;" class="text-left text-white px-4 py-2 rounded-lg hover:opacity-90">
                         Sair
                     </button>
                 </div>
@@ -209,7 +210,7 @@
                     Seus dados foram coletados! Agora escolha o plano que melhor se adapta aos seus objetivos.
                 </p>
                 <div class="inline-flex items-center bg-white/20 backdrop-blur-sm rounded-full px-6 py-3">
-                    <div class="w-3 h-3 bg-green-400 rounded-full mr-3 pulse"></div>
+                    <div class="w-3 h-3 rounded-full mr-3" style="background-color: #CC785C;"></div>
                     <span class="text-sm font-medium">Dados coletados com sucesso!</span>
                 </div>
             </div>
@@ -221,10 +222,10 @@
         <div class="container mx-auto px-4">
             <!-- Section Header -->
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4" style="color: #2C2C2C;">
                     Planos que cabem no seu bolso!
                 </h2>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                <p class="text-lg" style="color: #2C2C2C; opacity: 0.7;">
                     Preços que cabem no seu bolso!
                 </p>
             </div>
@@ -235,12 +236,12 @@
                 <!-- Dieta Emagrecimento -->
                 <div class="plan-card bg-white rounded-3xl shadow-xl p-8 relative">
                     <div class="text-center mb-8">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Dieta Emagrecimento 📉</h3>
+                        <h3 class="text-2xl font-bold mb-2" style="color: #2C2C2C;">Dieta Emagrecimento 📉</h3>
                         <div class="price text-4xl font-bold mb-1">R$ 9,99</div>
-                        <p class="text-gray-600">Para quem foca em Emagrecimento</p>
+                        <p style="color: #2C2C2C; opacity: 0.7;">Para quem foca em Emagrecimento</p>
                     </div>
                     
-                    <ul class="feature-list space-y-3 mb-8 text-gray-700">
+                    <ul class="feature-list space-y-3 mb-8" style="color: #2C2C2C;">
                         <li>Dieta Totalmente Personalizada</li>
                         <li>Baseada em seus alimentos</li>
                         <li>Calorias ajustadas</li>
@@ -261,14 +262,14 @@
                 <!-- Dieta + Treino (Popular) -->
                 <div class="plan-card popular bg-white rounded-3xl shadow-xl p-8 relative">
                     <div class="popular-badge">Mais Vendido</div>
-                    
+
                     <div class="text-center mb-8 mt-4">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Dieta + Treino 🏋️</h3>
+                        <h3 class="text-2xl font-bold mb-2" style="color: #2C2C2C;">Dieta + Treino 🏋️</h3>
                         <div class="price text-4xl font-bold mb-1">R$ 14,99</div>
-                        <p class="text-gray-600">O mais completo</p>
+                        <p style="color: #2C2C2C; opacity: 0.7;">O mais completo</p>
                     </div>
-                    
-                    <ul class="feature-list space-y-3 mb-8 text-gray-700">
+
+                    <ul class="feature-list space-y-3 mb-8" style="color: #2C2C2C;">
                         <li>Dieta Personalizada</li>
                         <li>Baseada em suas preferências</li>
                         <li>Opções para casa ou academia</li>
@@ -289,12 +290,12 @@
                 <!-- Acompanhamento com Nutricionista -->
                 <div class="plan-card bg-white rounded-3xl shadow-xl p-8 relative">
                     <div class="text-center mb-8">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Acompanhamento com a Nutricionista</h3>
+                        <h3 class="text-2xl font-bold mb-2" style="color: #2C2C2C;">Acompanhamento com a Nutricionista</h3>
                         <div class="price text-4xl font-bold mb-1">R$ 19,99</div>
-                        <p class="text-gray-600">O mais completo</p>
+                        <p style="color: #2C2C2C; opacity: 0.7;">O mais completo</p>
                     </div>
-                    
-                    <ul class="feature-list space-y-3 mb-8 text-gray-700">
+
+                    <ul class="feature-list space-y-3 mb-8" style="color: #2C2C2C;">
                         <li>Dieta Modificada pela Nutri</li>
                         <li>Direito para ajustar sua dieta</li>
                         <li>Variedade de opções</li>
@@ -320,12 +321,12 @@
                 <!-- Dieta Emagrecer + Massa -->
                 <div class="plan-card bg-white rounded-3xl shadow-xl p-6 relative">
                     <div class="text-center mb-6">
-                        <div class="text-sm text-gray-500 mb-2">Para emagrecer e Definir</div>
-                        <h3 class="text-xl font-bold text-gray-800 mb-2">Dieta Emagrecer + Massa 💪</h3>
+                        <div class="text-sm mb-2" style="color: #2C2C2C; opacity: 0.6;">Para emagrecer e Definir</div>
+                        <h3 class="text-xl font-bold mb-2" style="color: #2C2C2C;">Dieta Emagrecer + Massa 💪</h3>
                         <div class="price text-3xl font-bold mb-1">R$ 10,99</div>
                     </div>
-                    
-                    <ul class="feature-list space-y-2 mb-6 text-sm text-gray-700">
+
+                    <ul class="feature-list space-y-2 mb-6 text-sm" style="color: #2C2C2C;">
                         <li>Dieta Totalmente Personalizada</li>
                         <li>Baseada em seus alimentos</li>
                         <li>Calorias ajustadas</li>
@@ -343,12 +344,12 @@
                 <!-- Dieta Ganho de Massa -->
                 <div class="plan-card bg-white rounded-3xl shadow-xl p-6 relative">
                     <div class="text-center mb-6">
-                        <div class="text-sm text-gray-500 mb-2">Para ganho de massa</div>
-                        <h3 class="text-xl font-bold text-gray-800 mb-2">Dieta Ganho de Massa</h3>
+                        <div class="text-sm mb-2" style="color: #2C2C2C; opacity: 0.6;">Para ganho de massa</div>
+                        <h3 class="text-xl font-bold mb-2" style="color: #2C2C2C;">Dieta Ganho de Massa</h3>
                         <div class="price text-3xl font-bold mb-1">R$ 15,99</div>
                     </div>
-                    
-                    <ul class="feature-list space-y-2 mb-6 text-sm text-gray-700">
+
+                    <ul class="feature-list space-y-2 mb-6 text-sm" style="color: #2C2C2C;">
                         <li>Dieta Totalmente Personalizada</li>
                         <li>Baseada em seus alimentos</li>
                         <li>Calorias ajustadas</li>
@@ -357,7 +358,7 @@
                         <li>Ebook Personalizado</li>
                         <li>Resumo sobre sua situação</li>
                     </ul>
-                    
+
                     <button class="w-full btn-secondary text-white py-3 rounded-xl font-semibold mb-3" onclick="selectPlan('ganho-massa')">
                         Comprar Agora
                     </button>
@@ -366,12 +367,12 @@
                 <!-- Dieta Definição + Massa -->
                 <div class="plan-card bg-white rounded-3xl shadow-xl p-6 relative">
                     <div class="text-center mb-6">
-                        <div class="text-sm text-gray-500 mb-2">Para Definição e ganho de massa</div>
-                        <h3 class="text-xl font-bold text-gray-800 mb-2">Dieta Definição + Massa</h3>
+                        <div class="text-sm mb-2" style="color: #2C2C2C; opacity: 0.6;">Para Definição e ganho de massa</div>
+                        <h3 class="text-xl font-bold mb-2" style="color: #2C2C2C;">Dieta Definição + Massa</h3>
                         <div class="price text-3xl font-bold mb-1">R$ 16,99</div>
                     </div>
-                    
-                    <ul class="feature-list space-y-2 mb-6 text-sm text-gray-700">
+
+                    <ul class="feature-list space-y-2 mb-6 text-sm" style="color: #2C2C2C;">
                         <li>Dieta Totalmente Personalizada</li>
                         <li>Baseada em seus alimentos</li>
                         <li>Calorias ajustadas</li>
@@ -390,13 +391,13 @@
     </section>
 
     <!-- Testimonials Section -->
-    <section class="py-20 bg-gradient-to-br from-green-50 to-blue-50">
+    <section class="py-20" style="background-color: #FAFAFA;">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4" style="color: #2C2C2C;">
                     O que nossos clientes dizem
                 </h2>
-                <p class="text-lg text-gray-600">
+                <p class="text-lg" style="color: #2C2C2C; opacity: 0.7;">
                     Milhares de pessoas já transformaram suas vidas
                 </p>
             </div>
@@ -404,15 +405,15 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
                 <div class="testimonial-card">
                     <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-bold mr-4">
+                        <div class="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold mr-4" style="background-color: #CC785C;">
                             M
                         </div>
                         <div>
-                            <h4 class="font-semibold text-gray-800">Maria Silva</h4>
-                            <p class="text-sm text-gray-600">Perdeu 15kg em 3 meses</p>
+                            <h4 class="font-semibold" style="color: #2C2C2C;">Maria Silva</h4>
+                            <p class="text-sm" style="color: #2C2C2C; opacity: 0.6;">Perdeu 15kg em 3 meses</p>
                         </div>
                     </div>
-                    <p class="text-gray-700 italic">
+                    <p class="italic" style="color: #2C2C2C; opacity: 0.8;">
                         "O GymMind mudou minha vida! A dieta personalizada funcionou perfeitamente para minha rotina."
                     </p>
                     <div class="flex text-yellow-400 mt-3">
@@ -422,15 +423,15 @@
 
                 <div class="testimonial-card">
                     <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold mr-4">
+                        <div class="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold mr-4" style="background-color: #CC785C;">
                             J
                         </div>
                         <div>
-                            <h4 class="font-semibold text-gray-800">João Santos</h4>
-                            <p class="text-sm text-gray-600">Ganhou 8kg de massa muscular</p>
+                            <h4 class="font-semibold" style="color: #2C2C2C;">João Santos</h4>
+                            <p class="text-sm" style="color: #2C2C2C; opacity: 0.6;">Ganhou 8kg de massa muscular</p>
                         </div>
                     </div>
-                    <p class="text-gray-700 italic">
+                    <p class="italic" style="color: #2C2C2C; opacity: 0.8;">
                         "Os treinos personalizados foram fundamentais para atingir meus objetivos. Recomendo!"
                     </p>
                     <div class="flex text-yellow-400 mt-3">
@@ -440,15 +441,15 @@
 
                 <div class="testimonial-card">
                     <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold mr-4">
+                        <div class="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold mr-4" style="background-color: #CC785C;">
                             A
                         </div>
                         <div>
-                            <h4 class="font-semibold text-gray-800">Ana Costa</h4>
-                            <p class="text-sm text-gray-600">Definiu o corpo em 2 meses</p>
+                            <h4 class="font-semibold" style="color: #2C2C2C;">Ana Costa</h4>
+                            <p class="text-sm" style="color: #2C2C2C; opacity: 0.6;">Definiu o corpo em 2 meses</p>
                         </div>
                     </div>
-                    <p class="text-gray-700 italic">
+                    <p class="italic" style="color: #2C2C2C; opacity: 0.8;">
                         "O acompanhamento com a nutricionista fez toda a diferença. Resultados incríveis!"
                     </p>
                     <div class="flex text-yellow-400 mt-3">
@@ -460,33 +461,33 @@
     </section>
 
     <!-- FAQ Section -->
-    <section class="py-20 bg-white">
+    <section class="py-20" style="background-color: #F5F5F4;">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4" style="color: #2C2C2C;">
                     Perguntas Frequentes
                 </h2>
             </div>
 
             <div class="max-w-3xl mx-auto space-y-6">
-                <div class="bg-gray-50 rounded-xl p-6">
-                    <h3 class="font-bold text-gray-800 mb-2">Como funciona o GymMind?</h3>
-                    <p class="text-gray-600">Coletamos seus dados pessoais, preferências alimentares e objetivos para criar uma dieta 100% personalizada para você.</p>
+                <div class="bg-white rounded-xl p-6" style="border: 1px solid #E5E5E5;">
+                    <h3 class="font-bold mb-2" style="color: #2C2C2C;">Como funciona o GymMind?</h3>
+                    <p style="color: #2C2C2C; opacity: 0.7;">Coletamos seus dados pessoais, preferências alimentares e objetivos para criar uma dieta 100% personalizada para você.</p>
                 </div>
 
-                <div class="bg-gray-50 rounded-xl p-6">
-                    <h3 class="font-bold text-gray-800 mb-2">Em quanto tempo vou receber minha dieta?</h3>
-                    <p class="text-gray-600">Sua dieta é gerada instantaneamente com IA e você recebe imediatamente após o pagamento.</p>
+                <div class="bg-white rounded-xl p-6" style="border: 1px solid #E5E5E5;">
+                    <h3 class="font-bold mb-2" style="color: #2C2C2C;">Em quanto tempo vou receber minha dieta?</h3>
+                    <p style="color: #2C2C2C; opacity: 0.7;">Sua dieta é gerada instantaneamente com IA e você recebe imediatamente após o pagamento.</p>
                 </div>
 
-                <div class="bg-gray-50 rounded-xl p-6">
-                    <h3 class="font-bold text-gray-800 mb-2">Posso alterar a dieta depois?</h3>
-                    <p class="text-gray-600">No plano com nutricionista, você tem direito a ajustes. Nos outros planos, pode comprar uma nova dieta personalizada.</p>
+                <div class="bg-white rounded-xl p-6" style="border: 1px solid #E5E5E5;">
+                    <h3 class="font-bold mb-2" style="color: #2C2C2C;">Posso alterar a dieta depois?</h3>
+                    <p style="color: #2C2C2C; opacity: 0.7;">No plano com nutricionista, você tem direito a ajustes. Nos outros planos, pode comprar uma nova dieta personalizada.</p>
                 </div>
 
-                <div class="bg-gray-50 rounded-xl p-6">
-                    <h3 class="font-bold text-gray-800 mb-2">Vocês oferecem garantia?</h3>
-                    <p class="text-gray-600">Sim! Oferecemos 7 dias de garantia. Se não ficar satisfeito, devolvemos 100% do seu dinheiro.</p>
+                <div class="bg-white rounded-xl p-6" style="border: 1px solid #E5E5E5;">
+                    <h3 class="font-bold mb-2" style="color: #2C2C2C;">Vocês oferecem garantia?</h3>
+                    <p style="color: #2C2C2C; opacity: 0.7;">Sim! Oferecemos 7 dias de garantia. Se não ficar satisfeito, devolvemos 100% do seu dinheiro.</p>
                 </div>
             </div>
         </div>
@@ -496,16 +497,17 @@
     <footer class="footer-section text-white py-16">
         <div class="container mx-auto px-4">
             <div class="text-center">
-                <div class="text-3xl font-bold mb-4">
-                    <span class="text-blue-400">Gym</span><span class="text-green-400">Mind</span>
+                <div class="flex items-center justify-center gap-2 mb-4">
+                    <div class="logo-box">GM</div>
+                    <span class="text-2xl font-semibold">GymMind</span>
                 </div>
-                <p class="text-gray-300 mb-8 max-w-2xl mx-auto">
-                    Transformando vidas através de dietas e treinos personalizados. 
+                <p class="mb-8 max-w-2xl mx-auto" style="opacity: 0.8;">
+                    Transformando vidas através de dietas e treinos personalizados.
                     Sua jornada para uma vida mais saudável começa aqui.
                 </p>
-                
-                <div class="border-t border-gray-700 pt-8">
-                    <p class="text-gray-400">
+
+                <div class="border-t pt-8" style="border-color: rgba(255, 255, 255, 0.2);">
+                    <p style="opacity: 0.7;">
                         © 2024 GymMind. Todos os direitos reservados.
                     </p>
                 </div>
