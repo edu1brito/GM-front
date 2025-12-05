@@ -46,7 +46,7 @@
 
         /* Hero Gradient com padrão */
         .hero-gradient {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background: linear-gradient(135deg, #2C2C2C 0%, #1F1F1F 100%);
             position: relative;
             overflow: hidden;
         }
@@ -58,83 +58,65 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.08'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            animation: float 20s infinite linear;
+            opacity: 0.03;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
 
-        /* Logo com animação */
+        /* Logo simples */
         .logo-brain {
             display: inline-block;
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            border-radius: 12px;
+            width: 36px;
+            height: 36px;
+            background: #CC785C;
+            border-radius: 8px;
             position: relative;
-            animation: pulse-glow 3s infinite;
         }
 
         .logo-brain::before {
-            content: '🧠';
+            content: 'GM';
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 24px;
+            font-size: 14px;
+            font-weight: 800;
+            color: white;
         }
 
         /* Cards modernos */
         .glass-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            background: #FFFFFF;
+            border: 1px solid #E5E5E5;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
         }
 
-        /* Itens de refeição com mais personalidade */
+        /* Itens de refeição clean */
         .meal-item {
-            background: linear-gradient(145deg, #ffffff, #f8fafc);
-            border: 3px solid transparent;
-            border-radius: 20px;
-            padding: 24px;
+            background: #FAFAFA;
+            border: 2px solid #E5E5E5;
+            border-radius: 12px;
+            padding: 20px;
             text-align: center;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            font-weight: 700;
-            color: #1e293b;
-            position: relative;
-            overflow: hidden;
-            font-size: 16px;
-        }
-
-        .meal-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.15), transparent);
-            transition: left 0.6s;
+            transition: all 0.2s ease;
+            font-weight: 500;
+            color: #2C2C2C;
+            font-size: 15px;
         }
 
         .meal-item:hover {
-            background: linear-gradient(145deg, #f1f5f9, #e2e8f0);
-            border-color: #818cf8;
-            transform: translateY(-8px) scale(1.03);
-            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
-        }
-
-        .meal-item:hover::before {
-            left: 100%;
+            background: #FFFFFF;
+            border-color: #CC785C;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
 
         .meal-item.selected {
-            background: linear-gradient(145deg, #eef2ff, #ddd6fe);
-            border-color: #6366f1;
-            color: #4338ca;
-            transform: translateY(-8px) scale(1.05);
-            box-shadow: 0 25px 50px rgba(99, 102, 241, 0.3);
-            animation: bounce-in 0.5s;
+            background: #FFF4F0;
+            border-color: #CC785C;
+            color: #2C2C2C;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(204, 120, 92, 0.15);
         }
 
         .meal-item.selected::after {
@@ -142,167 +124,138 @@
             position: absolute;
             top: 8px;
             right: 8px;
-            width: 28px;
-            height: 28px;
-            background: linear-gradient(135deg, #10b981, #059669);
+            width: 20px;
+            height: 20px;
+            background: #CC785C;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 16px;
+            font-size: 12px;
             font-weight: bold;
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
         }
 
-        /* Barra de progresso moderna */
+        /* Barra de progresso clean */
         .progress-bar {
-            height: 8px;
-            background: #e2e8f0;
+            height: 6px;
+            background: #E5E5E5;
             border-radius: 9999px;
             overflow: hidden;
-            position: relative;
         }
 
         .progress-bar-fill {
             height: 100%;
-            background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899);
+            background: #CC785C;
             border-radius: 9999px;
             transition: width 0.5s ease;
-            position: relative;
-            overflow: hidden;
         }
 
-        .progress-bar-fill::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0) 100%);
-            animation: shimmer 2s infinite;
-        }
-
-        /* Inputs modernos */
+        /* Inputs clean */
         .modern-input {
-            border: 3px solid #e2e8f0;
-            transition: all 0.3s;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border: 1px solid #D4D4D4;
+            transition: all 0.2s;
+            background: #FAFAFA;
         }
 
         .modern-input:focus {
             outline: none;
-            border-color: #6366f1;
-            box-shadow: 0 8px 24px rgba(99, 102, 241, 0.15);
-            transform: translateY(-2px);
+            border-color: #CC785C;
+            background: #FFFFFF;
+            box-shadow: 0 0 0 3px rgba(204, 120, 92, 0.1);
         }
 
         /* Select customizado */
         .custom-select {
             appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236366f1' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23737373' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: right 1rem center;
-            background-size: 1.5rem;
+            background-size: 1.2rem;
             padding-right: 3rem;
         }
 
-        /* Range slider customizado */
+        /* Range slider clean */
         .custom-range {
             -webkit-appearance: none;
             width: 100%;
-            height: 10px;
-            border-radius: 5px;
-            background: linear-gradient(to right, #e2e8f0 0%, #e2e8f0 100%);
+            height: 6px;
+            border-radius: 3px;
+            background: #E5E5E5;
             outline: none;
         }
 
         .custom-range::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
-            width: 28px;
-            height: 28px;
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            background: #CC785C;
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
-            transition: all 0.3s;
+            transition: all 0.2s;
         }
 
         .custom-range::-webkit-slider-thumb:hover {
-            transform: scale(1.2);
-            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6);
+            transform: scale(1.1);
         }
 
         .custom-range::-moz-range-thumb {
-            width: 28px;
-            height: 28px;
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            background: #CC785C;
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
-            transition: all 0.3s;
+            border: none;
+            transition: all 0.2s;
         }
 
-        /* Botões primários */
+        /* Botões clean */
         .btn-primary {
-            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 300%;
-            height: 300%;
-            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
-            transform: translate(-50%, -50%) scale(0);
-            transition: transform 0.5s;
-        }
-
-        .btn-primary:hover::before {
-            transform: translate(-50%, -50%) scale(1);
+            background: #CC785C;
+            transition: all 0.2s ease;
         }
 
         .btn-primary:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.3);
+            background: #B8674C;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(204, 120, 92, 0.25);
         }
 
-        /* Card de treino */
+        .btn-primary:disabled {
+            background: #D4D4D4;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Card de treino clean */
         .training-card {
-            background: linear-gradient(145deg, #fefbff, #f3f4f6);
-            border-radius: 24px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-            border: 2px solid #e5e7eb;
-            transition: all 0.3s;
+            background: #FFFFFF;
+            border-radius: 16px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            border: 1px solid #E5E5E5;
+            transition: all 0.2s;
         }
 
         .training-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.12);
-            border-color: #c7d2fe;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
 
-        /* Checkbox customizado */
+        /* Checkbox clean */
         .custom-checkbox {
             appearance: none;
-            width: 24px;
-            height: 24px;
-            border: 3px solid #e2e8f0;
-            border-radius: 6px;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #D4D4D4;
+            border-radius: 4px;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.2s;
             position: relative;
         }
 
         .custom-checkbox:checked {
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            border-color: #6366f1;
+            background: #CC785C;
+            border-color: #CC785C;
         }
 
         .custom-checkbox:checked::after {
@@ -313,7 +266,7 @@
             transform: translate(-50%, -50%);
             color: white;
             font-weight: bold;
-            font-size: 16px;
+            font-size: 12px;
         }
 
         /* Animação de entrada */
@@ -327,52 +280,53 @@
         .stagger-4 { animation-delay: 0.4s; }
         .stagger-5 { animation-delay: 0.5s; }
 
-        /* Scrollbar customizada */
+        /* Scrollbar clean */
         ::-webkit-scrollbar {
-            width: 12px;
+            width: 10px;
         }
 
         ::-webkit-scrollbar-track {
-            background: #f1f5f9;
+            background: #FAFAFA;
         }
 
         ::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, #6366f1, #8b5cf6);
-            border-radius: 6px;
+            background: #D4D4D4;
+            border-radius: 5px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(180deg, #4f46e5, #7c3aed);
+            background: #A3A3A3;
         }
 
-        /* Estilo do botão de navegação com borda */
+        /* Botão de navegação clean */
         .nav-btn {
-            border: 2px solid #6366f1;
-            padding: 8px 24px;
-            border-radius: 12px;
-            transition: all 0.3s;
+            border: 1px solid #D4D4D4;
+            padding: 8px 20px;
+            border-radius: 8px;
+            transition: all 0.2s;
         }
 
         .nav-btn:hover {
-            background: #6366f1;
+            background: #CC785C;
             color: white;
+            border-color: #CC785C;
         }
     </style>
 </head>
-<body class="bg-gradient-to-br from-slate-50 to-indigo-50">
+<body style="background: #F5F5F4;">
     <!-- Header fixo com navegação completa -->
     <header class="fixed top-0 w-full z-50 glass-card transition-all duration-300">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <div class="flex items-center gap-3">
                 <div class="logo-brain"></div>
-                <span class="text-2xl font-black bg-gradient-to-r from-indigo-600 to-purple-600 text-transparent bg-clip-text">GymMind</span>
+                <span class="text-2xl font-black" style="color: #2C2C2C;">GymMind</span>
             </div>
             <nav class="hidden md:flex items-center gap-8">
-                <a href="index.html" class="font-bold text-slate-700 hover:text-indigo-600 transition-colors">Home</a>
-                <a href="dietas.html" class="font-bold text-slate-700 hover:text-indigo-600 transition-colors">Dietas</a>
-                <a href="sobre.html" class="font-bold text-slate-700 hover:text-indigo-600 transition-colors">Sobre</a>
-                <a href="perfil.html" class="font-bold text-slate-700 hover:text-indigo-600 transition-colors">Perfil</a>
-                <button onclick="handleLogout()" class="nav-btn font-bold text-indigo-600 hover:bg-indigo-600 hover:text-white transition-all">
+                <a href="index.html" class="font-medium text-neutral-700 hover:text-neutral-900 transition-colors" style="font-size: 15px;">Home</a>
+                <a href="dietas.html" class="font-medium text-neutral-700 hover:text-neutral-900 transition-colors" style="font-size: 15px;">Dietas</a>
+                <a href="sobre.html" class="font-medium text-neutral-700 hover:text-neutral-900 transition-colors" style="font-size: 15px;">Sobre</a>
+                <a href="perfil.html" class="font-medium text-neutral-700 hover:text-neutral-900 transition-colors" style="font-size: 15px;">Perfil</a>
+                <button onclick="handleLogout()" class="nav-btn font-medium" style="color: #2C2C2C; font-size: 15px;">
                     Sair
                 </button>
             </nav>
@@ -402,15 +356,15 @@
     <!-- Hero Section -->
     <section id="home" class="hero-gradient min-h-screen flex items-center justify-center relative mt-16">
         <div class="container mx-auto px-4 text-center relative z-10">
-            <h1 class="text-6xl md:text-8xl font-black text-white mb-8 fade-in-up">
+            <h1 class="text-5xl md:text-7xl font-black text-white mb-6 fade-in-up" style="letter-spacing: -0.02em;">
                 Sua Dieta<br/>
-                <span class="text-yellow-300">Personalizada</span>
+                <span style="color: #CC785C;">Personalizada</span>
             </h1>
-            <p class="text-xl md:text-2xl text-white/90 mb-12 max-w-2xl mx-auto fade-in-up stagger-1">
-                🧠 Inteligência + 💪 Resultado = Seu novo corpo dos sonhos
+            <p class="text-lg md:text-xl text-white/80 mb-12 max-w-2xl mx-auto fade-in-up stagger-1" style="font-weight: 400;">
+                Nutrição inteligente e treinos personalizados para transformar seu corpo
             </p>
-            <a href="#form" class="inline-block btn-primary text-white px-12 py-6 rounded-full text-xl font-bold fade-in-up stagger-2">
-                Começar Agora →
+            <a href="#form" class="inline-block btn-primary text-white px-10 py-4 rounded-lg text-base font-semibold fade-in-up stagger-2">
+                Começar Agora
             </a>
         </div>
     </section>
@@ -419,8 +373,8 @@
     <section id="form" class="py-20">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <h2 class="text-5xl font-black text-slate-800 mb-4">Vamos Criar Seu Plano</h2>
-                <p class="text-xl text-slate-600">Preencha com seus dados e preferências</p>
+                <h2 class="text-4xl font-black mb-3" style="color: #2C2C2C; letter-spacing: -0.02em;">Vamos Criar Seu Plano</h2>
+                <p class="text-base text-neutral-600">Preencha com seus dados e preferências</p>
             </div>
 
             <!-- Barra de Progresso -->
@@ -428,40 +382,38 @@
                 <div class="progress-bar">
                     <div id="progressBar" class="progress-bar-fill" style="width: 0%"></div>
                 </div>
-                <div class="flex justify-between mt-4">
-                    <span class="text-sm font-bold text-slate-600">Início</span>
-                    <span id="progressText" class="text-sm font-bold text-indigo-600">0%</span>
-                    <span class="text-sm font-bold text-slate-600">Completo</span>
+                <div class="flex justify-between mt-3">
+                    <span class="text-sm font-medium text-neutral-600">Início</span>
+                    <span id="progressText" class="text-sm font-semibold" style="color: #CC785C;">0%</span>
+                    <span class="text-sm font-medium text-neutral-600">Completo</span>
                 </div>
             </div>
 
             <!-- Formulário -->
             <div class="max-w-6xl mx-auto space-y-8">
                 <!-- Informações Básicas -->
-                <div class="glass-card rounded-3xl p-8">
-                    <h3 class="text-3xl font-black text-slate-800 mb-8 flex items-center gap-3">
-                        <span class="text-4xl">👤</span> Informações Básicas
-                    </h3>
+                <div class="glass-card rounded-2xl p-10">
+                    <h3 class="text-2xl font-bold mb-6" style="color: #2C2C2C;">Informações Básicas</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <label class="block text-sm font-bold text-slate-700 mb-2">Nome Completo</label>
-                            <input type="text" id="nome" class="modern-input w-full rounded-xl px-4 py-3" placeholder="Seu nome">
+                            <label class="block text-sm font-semibold mb-2" style="color: #2C2C2C;">Nome Completo</label>
+                            <input type="text" id="nome" class="modern-input w-full rounded-lg px-4 py-3" placeholder="Seu nome">
                         </div>
                         <div>
-                            <label class="block text-sm font-bold text-slate-700 mb-2">Idade</label>
-                            <input type="number" id="idade" class="modern-input w-full rounded-xl px-4 py-3" placeholder="Sua idade">
+                            <label class="block text-sm font-semibold mb-2" style="color: #2C2C2C;">Idade</label>
+                            <input type="number" id="idade" class="modern-input w-full rounded-lg px-4 py-3" placeholder="Sua idade">
                         </div>
                         <div>
-                            <label class="block text-sm font-bold text-slate-700 mb-2">Peso (kg)</label>
-                            <input type="number" id="peso" class="modern-input w-full rounded-xl px-4 py-3" placeholder="Ex: 70">
+                            <label class="block text-sm font-semibold mb-2" style="color: #2C2C2C;">Peso (kg)</label>
+                            <input type="number" id="peso" class="modern-input w-full rounded-lg px-4 py-3" placeholder="Ex: 70">
                         </div>
                         <div>
-                            <label class="block text-sm font-bold text-slate-700 mb-2">Altura (cm)</label>
-                            <input type="number" id="altura" class="modern-input w-full rounded-xl px-4 py-3" placeholder="Ex: 175">
+                            <label class="block text-sm font-semibold mb-2" style="color: #2C2C2C;">Altura (cm)</label>
+                            <input type="number" id="altura" class="modern-input w-full rounded-lg px-4 py-3" placeholder="Ex: 175">
                         </div>
                         <div>
-                            <label class="block text-sm font-bold text-slate-700 mb-2">Gênero</label>
-                            <select id="genero" class="modern-input custom-select w-full rounded-xl px-4 py-3">
+                            <label class="block text-sm font-semibold mb-2" style="color: #2C2C2C;">Gênero</label>
+                            <select id="genero" class="modern-input custom-select w-full rounded-lg px-4 py-3">
                                 <option value="">Selecione</option>
                                 <option value="masculino">Masculino</option>
                                 <option value="feminino">Feminino</option>
@@ -469,70 +421,65 @@
                             </select>
                         </div>
                         <div>
-                            <label class="block text-sm font-bold text-slate-700 mb-2">Objetivo Principal</label>
-                            <select id="objetivo" class="modern-input custom-select w-full rounded-xl px-4 py-3">
+                            <label class="block text-sm font-semibold mb-2" style="color: #2C2C2C;">Objetivo Principal</label>
+                            <select id="objetivo" class="modern-input custom-select w-full rounded-lg px-4 py-3">
                                 <option value="">Selecione seu objetivo</option>
-                                <option value="emagrecer">🔥 Emagrecer</option>
-                                <option value="ganhar-massa">💪 Ganhar Massa</option>
-                                <option value="definir">✨ Definir</option>
-                                <option value="manter">⚖️ Manter Peso</option>
+                                <option value="emagrecer">Emagrecer</option>
+                                <option value="ganhar-massa">Ganhar Massa</option>
+                                <option value="definir">Definir</option>
+                                <option value="manter">Manter Peso</option>
                             </select>
                         </div>
                     </div>
                 </div>
 
                 <!-- Seleção de Refeições -->
-                <div class="glass-card rounded-3xl p-8">
-                    <h3 class="text-3xl font-black text-slate-800 mb-8 flex items-center gap-3">
-                        <span class="text-4xl">🍽️</span> Monte Suas Refeições
-                    </h3>
+                <div class="glass-card rounded-2xl p-10">
+                    <h3 class="text-2xl font-bold mb-6" style="color: #2C2C2C;">Monte Suas Refeições</h3>
 
                     <!-- Café da Manhã -->
                     <div class="mb-8">
-                        <h4 class="text-xl font-bold text-slate-700 mb-4">☕ Café da Manhã</h4>
-                        <div id="cafe" class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <h4 class="text-base font-semibold mb-4" style="color: #2C2C2C;">Café da Manhã</h4>
+                        <div id="cafe" class="grid grid-cols-2 md:grid-cols-4 gap-3">
                             <!-- Items serão adicionados via JavaScript -->
                         </div>
                     </div>
 
                     <!-- Almoço -->
                     <div class="mb-8">
-                        <h4 class="text-xl font-bold text-slate-700 mb-4">🍴 Almoço</h4>
-                        <div id="almoco" class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <h4 class="text-base font-semibold mb-4" style="color: #2C2C2C;">Almoço</h4>
+                        <div id="almoco" class="grid grid-cols-2 md:grid-cols-4 gap-3">
                             <!-- Items serão adicionados via JavaScript -->
                         </div>
                     </div>
 
                     <!-- Lanche da Tarde -->
                     <div class="mb-8">
-                        <h4 class="text-xl font-bold text-slate-700 mb-4">🌅 Lanche da Tarde</h4>
-                        <div id="lanche-tarde" class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <h4 class="text-base font-semibold mb-4" style="color: #2C2C2C;">Lanche da Tarde</h4>
+                        <div id="lanche-tarde" class="grid grid-cols-2 md:grid-cols-4 gap-3">
                             <!-- Items serão adicionados via JavaScript -->
                         </div>
                     </div>
 
                     <!-- Jantar -->
                     <div class="mb-8">
-                        <h4 class="text-xl font-bold text-slate-700 mb-4">🌙 Jantar</h4>
-                        <div id="jantar" class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <h4 class="text-base font-semibold mb-4" style="color: #2C2C2C;">Jantar</h4>
+                        <div id="jantar" class="grid grid-cols-2 md:grid-cols-4 gap-3">
                             <!-- Items serão adicionados via JavaScript -->
                         </div>
                     </div>
                 </div>
 
                 <!-- Opção de Incluir Treino -->
-                <div class="glass-card rounded-3xl p-8">
+                <div class="glass-card rounded-2xl p-10">
                     <div class="flex items-center justify-between">
-                        <div class="flex items-center gap-4">
-                            <span class="text-4xl">💪</span>
-                            <div>
-                                <h3 class="text-2xl font-black text-slate-800">Incluir Plano de Treino?</h3>
-                                <p class="text-slate-600">Vamos criar uma rotina de exercícios personalizada</p>
-                            </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-1" style="color: #2C2C2C;">Incluir Plano de Treino?</h3>
+                            <p class="text-sm text-neutral-600">Vamos criar uma rotina de exercícios personalizada</p>
                         </div>
                         <label class="relative inline-flex items-center cursor-pointer">
                             <input type="checkbox" id="incluirTreino" class="sr-only peer">
-                            <div class="w-20 h-10 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-10 peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-9 after:w-9 after:transition-all peer-checked:bg-gradient-to-r peer-checked:from-indigo-600 peer-checked:to-purple-600"></div>
+                            <div class="w-16 h-8 bg-gray-200 rounded-full peer peer-checked:after:translate-x-8 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-7 after:w-7 after:transition-all after:shadow-sm peer-checked:bg-[#CC785C]"></div>
                         </label>
                     </div>
                 </div>
@@ -540,148 +487,133 @@
                 <!-- Seção de Treino (inicialmente oculta) -->
                 <div id="trainingSection" class="hidden space-y-8">
                     <!-- Informações de Treino -->
-                    <div class="training-card p-8">
-                        <div class="flex items-center gap-4 mb-6 pb-4 border-b-2 border-indigo-100">
-                            <div class="w-14 h-14 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center text-3xl shadow-lg">
-                                🏋️
-                            </div>
-                            <div>
-                                <h4 class="text-2xl font-black text-slate-800">Seu Perfil de Treino</h4>
-                                <p class="text-slate-600 mt-1 font-semibold">Como você treina hoje?</p>
-                            </div>
+                    <div class="training-card p-10">
+                        <div class="mb-6 pb-4 border-b border-neutral-200">
+                            <h4 class="text-xl font-bold" style="color: #2C2C2C;">Seu Perfil de Treino</h4>
+                            <p class="text-sm text-neutral-600 mt-1">Como você treina hoje?</p>
                         </div>
 
                         <div class="space-y-6">
                             <div>
-                                <label class="block text-base font-bold text-slate-700 mb-3">Frequência de exercícios</label>
-                                <select id="rotinaTreino" class="modern-input custom-select w-full rounded-xl px-6 py-4 bg-white font-semibold">
+                                <label class="block text-sm font-semibold mb-2" style="color: #2C2C2C;">Frequência de exercícios</label>
+                                <select id="rotinaTreino" class="modern-input custom-select w-full rounded-lg px-4 py-3">
                                     <option value="">Selecione sua rotina</option>
-                                    <option value="sedentario">😴 Sedentário (nenhum exercício)</option>
-                                    <option value="leve">🚶 Leve (1-3x por semana)</option>
-                                    <option value="moderado">🏃 Moderado (3-5x por semana)</option>
-                                    <option value="intenso">💪 Intenso (6-7x por semana)</option>
-                                    <option value="muito-intenso">🔥 Muito Intenso (2x por dia)</option>
+                                    <option value="sedentario">Sedentário (nenhum exercício)</option>
+                                    <option value="leve">Leve (1-3x por semana)</option>
+                                    <option value="moderado">Moderado (3-5x por semana)</option>
+                                    <option value="intenso">Intenso (6-7x por semana)</option>
+                                    <option value="muito-intenso">Muito Intenso (2x por dia)</option>
                                 </select>
                             </div>
 
                             <div>
-                                <label class="block text-base font-bold text-slate-700 mb-3">Local de treino</label>
-                                <select id="localTreino" class="modern-input custom-select w-full rounded-xl px-6 py-4 bg-white font-semibold">
+                                <label class="block text-sm font-semibold mb-2" style="color: #2C2C2C;">Local de treino</label>
+                                <select id="localTreino" class="modern-input custom-select w-full rounded-lg px-4 py-3">
                                     <option value="">Onde você treina?</option>
-                                    <option value="academia">🏋️ Academia</option>
-                                    <option value="casa">🏠 Em casa</option>
-                                    <option value="parque">🌳 Parque/Ar livre</option>
-                                    <option value="misto">🔄 Misto (academia + casa)</option>
-                                    <option value="nao-treino">❌ Não treino ainda</option>
+                                    <option value="academia">Academia</option>
+                                    <option value="casa">Em casa</option>
+                                    <option value="parque">Parque/Ar livre</option>
+                                    <option value="misto">Misto (academia + casa)</option>
+                                    <option value="nao-treino">Não treino ainda</option>
                                 </select>
                             </div>
 
                             <div>
-                                <label class="block text-base font-bold text-slate-700 mb-3">Experiência com treinos (meses)</label>
+                                <label class="block text-sm font-semibold mb-2" style="color: #2C2C2C;">Experiência com treinos (meses)</label>
                                 <input type="range" id="experienciaTreino" class="custom-range" min="0" max="60" value="0">
-                                <div class="flex justify-between text-xs text-slate-500 mt-2 font-semibold">
+                                <div class="flex justify-between text-xs text-neutral-500 mt-2 font-medium">
                                     <span>Iniciante</span>
                                     <span>Intermediário</span>
                                     <span>Avançado</span>
                                 </div>
-                                <div id="experienceValue" class="text-center font-black text-indigo-600 text-xl mt-4">🆕 Iniciante (0 meses)</div>
+                                <div id="experienceValue" class="text-center font-semibold text-base mt-3" style="color: #CC785C;">Iniciante (0 meses)</div>
                             </div>
 
                             <div>
-                                <label class="block text-base font-bold text-slate-700 mb-3">Objetivo principal</label>
-                                <select id="objetivoTreino" class="modern-input custom-select w-full rounded-xl px-6 py-4 bg-white font-semibold">
+                                <label class="block text-sm font-semibold mb-2" style="color: #2C2C2C;">Objetivo principal</label>
+                                <select id="objetivoTreino" class="modern-input custom-select w-full rounded-lg px-4 py-3">
                                     <option value="">Qual seu foco?</option>
-                                    <option value="perder-peso">🔥 Perder peso/queimar gordura</option>
-                                    <option value="ganhar-massa">💪 Ganhar massa muscular</option>
-                                    <option value="definir">✨ Definição muscular</option>
-                                    <option value="resistencia">🏃 Melhorar resistência</option>
-                                    <option value="forca">⚡ Aumentar força</option>
-                                    <option value="saude-geral">❤️ Saúde geral</option>
+                                    <option value="perder-peso">Perder peso/queimar gordura</option>
+                                    <option value="ganhar-massa">Ganhar massa muscular</option>
+                                    <option value="definir">Definição muscular</option>
+                                    <option value="resistencia">Melhorar resistência</option>
+                                    <option value="forca">Aumentar força</option>
+                                    <option value="saude-geral">Saúde geral</option>
                                 </select>
                             </div>
 
                             <div>
-                                <label class="block text-base font-bold text-slate-700 mb-3">Tempo disponível por treino</label>
-                                <select id="tempoTreino" class="modern-input custom-select w-full rounded-xl px-6 py-4 bg-white font-semibold">
+                                <label class="block text-sm font-semibold mb-2" style="color: #2C2C2C;">Tempo disponível por treino</label>
+                                <select id="tempoTreino" class="modern-input custom-select w-full rounded-lg px-4 py-3">
                                     <option value="">Quanto tempo você tem?</option>
-                                    <option value="30min">⏱️ 30 minutos</option>
-                                    <option value="45min">⏱️ 45 minutos</option>
-                                    <option value="60min">⏱️ 1 hora</option>
-                                    <option value="90min">⏱️ 1h30</option>
-                                    <option value="120min">⏱️ 2 horas ou mais</option>
+                                    <option value="30min">30 minutos</option>
+                                    <option value="45min">45 minutos</option>
+                                    <option value="60min">1 hora</option>
+                                    <option value="90min">1h30</option>
+                                    <option value="120min">2 horas ou mais</option>
                                 </select>
                             </div>
                         </div>
                     </div>
 
                     <!-- Preferências de Exercício -->
-                    <div class="training-card p-8">
-                        <div class="flex items-center gap-4 mb-6 pb-4 border-b-2 border-purple-100">
-                            <div class="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center text-3xl shadow-lg">
-                                🎯
-                            </div>
-                            <div>
-                                <h4 class="text-2xl font-black text-slate-800">O Que Você Curte?</h4>
-                                <p class="text-slate-600 mt-1 font-semibold">Marque suas atividades preferidas</p>
-                            </div>
+                    <div class="training-card p-10">
+                        <div class="mb-6 pb-4 border-b border-neutral-200">
+                            <h4 class="text-xl font-bold" style="color: #2C2C2C;">O Que Você Curte?</h4>
+                            <p class="text-sm text-neutral-600 mt-1">Marque suas atividades preferidas</p>
                         </div>
 
-                        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-                            <label class="flex items-center gap-3 p-4 bg-white rounded-xl hover:bg-purple-50 cursor-pointer transition-all">
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                            <label class="flex items-center gap-3 p-4 bg-neutral-50 rounded-lg hover:bg-neutral-100 cursor-pointer transition-all border border-neutral-200">
                                 <input type="checkbox" class="custom-checkbox" value="musculacao">
-                                <span class="font-bold">💪 Musculação</span>
+                                <span class="font-medium text-sm">Musculação</span>
                             </label>
-                            <label class="flex items-center gap-3 p-4 bg-white rounded-xl hover:bg-purple-50 cursor-pointer transition-all">
+                            <label class="flex items-center gap-3 p-4 bg-neutral-50 rounded-lg hover:bg-neutral-100 cursor-pointer transition-all border border-neutral-200">
                                 <input type="checkbox" class="custom-checkbox" value="cardio">
-                                <span class="font-bold">🏃 Cardio</span>
+                                <span class="font-medium text-sm">Cardio</span>
                             </label>
-                            <label class="flex items-center gap-3 p-4 bg-white rounded-xl hover:bg-purple-50 cursor-pointer transition-all">
+                            <label class="flex items-center gap-3 p-4 bg-neutral-50 rounded-lg hover:bg-neutral-100 cursor-pointer transition-all border border-neutral-200">
                                 <input type="checkbox" class="custom-checkbox" value="yoga">
-                                <span class="font-bold">🧘 Yoga</span>
+                                <span class="font-medium text-sm">Yoga</span>
                             </label>
-                            <label class="flex items-center gap-3 p-4 bg-white rounded-xl hover:bg-purple-50 cursor-pointer transition-all">
+                            <label class="flex items-center gap-3 p-4 bg-neutral-50 rounded-lg hover:bg-neutral-100 cursor-pointer transition-all border border-neutral-200">
                                 <input type="checkbox" class="custom-checkbox" value="pilates">
-                                <span class="font-bold">🤸 Pilates</span>
+                                <span class="font-medium text-sm">Pilates</span>
                             </label>
-                            <label class="flex items-center gap-3 p-4 bg-white rounded-xl hover:bg-purple-50 cursor-pointer transition-all">
+                            <label class="flex items-center gap-3 p-4 bg-neutral-50 rounded-lg hover:bg-neutral-100 cursor-pointer transition-all border border-neutral-200">
                                 <input type="checkbox" class="custom-checkbox" value="crossfit">
-                                <span class="font-bold">🔥 CrossFit</span>
+                                <span class="font-medium text-sm">CrossFit</span>
                             </label>
-                            <label class="flex items-center gap-3 p-4 bg-white rounded-xl hover:bg-purple-50 cursor-pointer transition-all">
+                            <label class="flex items-center gap-3 p-4 bg-neutral-50 rounded-lg hover:bg-neutral-100 cursor-pointer transition-all border border-neutral-200">
                                 <input type="checkbox" class="custom-checkbox" value="natacao">
-                                <span class="font-bold">🏊 Natação</span>
+                                <span class="font-medium text-sm">Natação</span>
                             </label>
-                            <label class="flex items-center gap-3 p-4 bg-white rounded-xl hover:bg-purple-50 cursor-pointer transition-all">
+                            <label class="flex items-center gap-3 p-4 bg-neutral-50 rounded-lg hover:bg-neutral-100 cursor-pointer transition-all border border-neutral-200">
                                 <input type="checkbox" class="custom-checkbox" value="funcional">
-                                <span class="font-bold">🎯 Funcional</span>
+                                <span class="font-medium text-sm">Funcional</span>
                             </label>
-                            <label class="flex items-center gap-3 p-4 bg-white rounded-xl hover:bg-purple-50 cursor-pointer transition-all">
+                            <label class="flex items-center gap-3 p-4 bg-neutral-50 rounded-lg hover:bg-neutral-100 cursor-pointer transition-all border border-neutral-200">
                                 <input type="checkbox" class="custom-checkbox" value="luta">
-                                <span class="font-bold">🥊 Artes Marciais</span>
+                                <span class="font-medium text-sm">Artes Marciais</span>
                             </label>
-                            <label class="flex items-center gap-3 p-4 bg-white rounded-xl hover:bg-purple-50 cursor-pointer transition-all">
+                            <label class="flex items-center gap-3 p-4 bg-neutral-50 rounded-lg hover:bg-neutral-100 cursor-pointer transition-all border border-neutral-200">
                                 <input type="checkbox" class="custom-checkbox" value="danca">
-                                <span class="font-bold">💃 Dança</span>
+                                <span class="font-medium text-sm">Dança</span>
                             </label>
                         </div>
                     </div>
 
                     <!-- Limitações -->
-                    <div class="training-card p-8">
-                        <div class="flex items-center gap-4 mb-6 pb-4 border-b-2 border-red-100">
-                            <div class="w-14 h-14 bg-gradient-to-br from-red-500 to-orange-600 rounded-xl flex items-center justify-center text-3xl shadow-lg">
-                                ⚠️
-                            </div>
-                            <div>
-                                <h4 class="text-2xl font-black text-slate-800">Alguma Limitação?</h4>
-                                <p class="text-slate-600 mt-1 font-semibold">Lesões ou restrições médicas (opcional)</p>
-                            </div>
+                    <div class="training-card p-10">
+                        <div class="mb-6 pb-4 border-b border-neutral-200">
+                            <h4 class="text-xl font-bold" style="color: #2C2C2C;">Alguma Limitação?</h4>
+                            <p class="text-sm text-neutral-600 mt-1">Lesões ou restrições médicas (opcional)</p>
                         </div>
 
-                        <textarea 
-                            id="limitacoes" 
-                            rows="4" 
-                            class="modern-input w-full rounded-xl px-6 py-4 bg-white font-medium"
+                        <textarea
+                            id="limitacoes"
+                            rows="4"
+                            class="modern-input w-full rounded-lg px-4 py-3"
                             placeholder="Ex: Tenho lesão no joelho, não posso fazer exercícios de impacto..."
                         ></textarea>
                     </div>
@@ -689,21 +621,20 @@
 
                 <!-- Botão Continuar para Planos -->
                 <div class="text-center mt-16">
-                    <button id="generateDiet" class="btn-primary text-white px-16 py-8 rounded-3xl text-2xl font-black transition-all duration-300 shadow-2xl disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none">
-                        <span class="mr-4">🚀</span>
+                    <button id="generateDiet" class="btn-primary text-white px-12 py-4 rounded-lg text-base font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none">
                         Escolher Plano
                     </button>
-                    <p class="text-slate-600 mt-4 font-bold text-lg">Escolha o plano ideal e comece sua transformação! 💪</p>
+                    <p class="text-neutral-600 mt-4 text-sm">Escolha o plano ideal e comece sua transformação</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-slate-800 text-white py-8 mt-20">
+    <footer class="py-12 mt-20" style="background: #2C2C2C;">
         <div class="container mx-auto px-4 text-center">
-            <p class="font-bold">© 2024 GymMind - Todos os direitos reservados</p>
-            <p class="text-slate-400 mt-2">Transforme seu corpo, transforme sua vida! 💪</p>
+            <p class="font-medium text-sm" style="color: #A3A3A3;">© 2024 GymMind - Todos os direitos reservados</p>
+            <p class="text-sm mt-2" style="color: #737373;">Transforme seu corpo, transforme sua vida</p>
         </div>
     </footer>
 
@@ -714,26 +645,26 @@
         // Opções de alimentos por refeição
         const mealOptions = {
             cafe: [
-                '🍞 Pão Integral', '🥚 Ovos', '🧈 Manteiga', '🥛 Leite', 
-                '☕ Café', '🍌 Banana', '🥣 Aveia', '🧀 Queijo',
-                '🥓 Bacon', '🍓 Frutas', '🥐 Croissant', '🍯 Mel',
-                '🥜 Granola', '🥑 Abacate', '🥞 Panqueca', '🧃 Suco'
+                'Pão Integral', 'Ovos', 'Manteiga', 'Leite',
+                'Café', 'Banana', 'Aveia', 'Queijo',
+                'Bacon', 'Frutas', 'Croissant', 'Mel',
+                'Granola', 'Abacate', 'Panqueca', 'Suco'
             ],
             almoco: [
-                '🍗 Frango', '🥩 Carne', '🐟 Peixe', '🍚 Arroz',
-                '🫘 Feijão', '🥗 Salada', '🥔 Batata', '🍝 Macarrão',
-                '🥦 Brócolis', '🥕 Cenoura', '🌽 Milho', '🍄 Cogumelos',
-                '🥒 Pepino', '🍅 Tomate', '🧅 Cebola', '🥬 Couve'
+                'Frango', 'Carne', 'Peixe', 'Arroz',
+                'Feijão', 'Salada', 'Batata', 'Macarrão',
+                'Brócolis', 'Cenoura', 'Milho', 'Cogumelos',
+                'Pepino', 'Tomate', 'Cebola', 'Couve'
             ],
             'lanche-tarde': [
-                '🍎 Maçã', '🥜 Castanhas', '🍪 Biscoito Integral', '🥤 Shake',
-                '🧈 Pasta de Amendoim', '🍐 Pera', '🍇 Uvas', '🥨 Torrada',
-                '🧀 Queijo Cottage', '🥚 Ovo Cozido', '🥕 Cenoura Baby', '🫐 Frutas Vermelhas'
+                'Maçã', 'Castanhas', 'Biscoito Integral', 'Shake',
+                'Pasta de Amendoim', 'Pera', 'Uvas', 'Torrada',
+                'Queijo Cottage', 'Ovo Cozido', 'Cenoura Baby', 'Frutas Vermelhas'
             ],
             jantar: [
-                '🥗 Salada', '🍲 Sopa', '🥘 Omelete', '🥙 Wrap',
-                '🍖 Carne Magra', '🦐 Camarão', '🥚 Ovos Mexidos', '🥦 Legumes',
-                '🍕 Pizza Integral', '🥪 Sanduíche', '🧆 Almôndegas', '🌮 Tacos'
+                'Salada', 'Sopa', 'Omelete', 'Wrap',
+                'Carne Magra', 'Camarão', 'Ovos Mexidos', 'Legumes',
+                'Pizza Integral', 'Sanduíche', 'Almôndegas', 'Tacos'
             ]
         };
 
@@ -814,16 +745,16 @@
             
             experienceSlider.addEventListener('input', function() {
                 const months = this.value;
-                let level = '🆕 Iniciante';
-                
-                if (months > 12) level = '💪 Intermediário';
-                if (months > 36) level = '🏆 Avançado';
-                
+                let level = 'Iniciante';
+
+                if (months > 12) level = 'Intermediário';
+                if (months > 36) level = 'Avançado';
+
                 experienceValue.textContent = `${level} (${months} meses)`;
-                
+
                 // Atualizar gradiente do slider
                 const percentage = (months / 60) * 100;
-                this.style.background = `linear-gradient(to right, #6366f1 0%, #6366f1 ${percentage}%, #e2e8f0 ${percentage}%, #e2e8f0 100%)`;
+                this.style.background = `linear-gradient(to right, #CC785C 0%, #CC785C ${percentage}%, #E5E5E5 ${percentage}%, #E5E5E5 100%)`;
             });
 
             // Botão gerar dieta
@@ -960,9 +891,8 @@
             };
 
             const notificationHTML = `
-                <div id="notification" class="fixed top-24 right-4 z-50 ${colors[type]} text-white px-6 py-4 rounded-xl shadow-2xl flex items-center gap-3 animate-pulse">
-                    <span class="text-xl">${type === 'error' ? '⚠️' : type === 'success' ? '✅' : 'ℹ️'}</span>
-                    <span class="font-bold">${message}</span>
+                <div id="notification" class="fixed top-24 right-4 z-50 ${colors[type]} text-white px-6 py-4 rounded-lg shadow-lg flex items-center gap-3">
+                    <span class="font-semibold">${message}</span>
                 </div>
             `;
 
