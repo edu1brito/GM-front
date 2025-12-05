@@ -14,9 +14,9 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #F5F5F4;
             min-height: 100vh;
-            color: #333;
+            color: #2C2C2C;
         }
 
         /* HEADER */
@@ -39,13 +39,16 @@
         }
 
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 700;
-            color: #667eea;
+            color: white;
             text-decoration: none;
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            background: #CC785C;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
         }
 
         .nav-links {
@@ -64,7 +67,7 @@
 
         .nav-links a:hover,
         .nav-links a.active {
-            color: #667eea;
+            color: #CC785C;
         }
 
         .nav-links a.active::after {
@@ -74,22 +77,21 @@
             left: 0;
             width: 100%;
             height: 2px;
-            background: #667eea;
+            background: #CC785C;
         }
 
         .logout-btn {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: #CC785C;
             color: white;
             padding: 0.5rem 1.5rem;
             border-radius: 25px;
             text-decoration: none;
             font-weight: 600;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: background 0.3s;
         }
 
         .logout-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            background: #B8674C;
         }
 
         /* MOBILE MENU */
@@ -133,7 +135,7 @@
 
         .hero-title h1 {
             font-size: 2rem;
-            color: #333;
+            color: #2C2C2C;
             margin-bottom: 0.5rem;
         }
 
@@ -143,21 +145,20 @@
         }
 
         .new-diet-btn {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: #CC785C;
             color: white;
             padding: 1rem 2rem;
             border: none;
             border-radius: 12px;
             font-weight: 600;
             cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: background 0.3s;
             text-decoration: none;
             display: inline-block;
         }
 
         .new-diet-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+            background: #B8674C;
         }
 
         /* STATS */
@@ -168,15 +169,16 @@
         }
 
         .stat-card {
-            background: linear-gradient(135deg, #667eea15, #764ba215);
+            background: white;
             padding: 1.5rem;
             border-radius: 15px;
-            border-left: 4px solid #667eea;
+            border: 1px solid #E5E5E5;
+            border-left: 4px solid #CC785C;
         }
 
         .stat-card h3 {
             font-size: 2rem;
-            color: #667eea;
+            color: #CC785C;
             margin-bottom: 0.5rem;
         }
 
@@ -217,7 +219,8 @@
         .filter-group input {
             width: 100%;
             padding: 0.75rem;
-            border: 2px solid #e0e0e0;
+            background: #FAFAFA;
+            border: 1px solid #D4D4D4;
             border-radius: 10px;
             font-size: 1rem;
             transition: border-color 0.3s;
@@ -226,7 +229,7 @@
         .filter-group select:focus,
         .filter-group input:focus {
             outline: none;
-            border-color: #667eea;
+            border-color: #CC785C;
         }
 
         .clear-filters-btn {
@@ -257,7 +260,7 @@
         }
 
         .section-header h2 {
-            color: white;
+            color: #2C2C2C;
             font-size: 1.5rem;
         }
 
@@ -279,7 +282,7 @@
         }
 
         .view-toggle button.active {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: #CC785C;
             color: white;
         }
 
@@ -291,16 +294,15 @@
 
         .diet-card {
             background: white;
-            border-radius: 20px;
+            border-radius: 12px;
             padding: 1.5rem;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #E5E5E5;
+            transition: border-color 0.3s;
             cursor: pointer;
         }
 
         .diet-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+            border-color: #D4D4D4;
         }
 
         .diet-header {
@@ -311,7 +313,7 @@
         }
 
         .diet-badge {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: #CC785C;
             color: white;
             padding: 0.4rem 1rem;
             border-radius: 20px;
@@ -326,12 +328,12 @@
 
         .diet-title {
             font-size: 1.3rem;
-            color: #333;
+            color: #2C2C2C;
             margin-bottom: 0.5rem;
         }
 
         .diet-goal {
-            color: #667eea;
+            color: #CC785C;
             font-weight: 600;
             margin-bottom: 1rem;
         }
@@ -353,7 +355,7 @@
         .diet-stat-value {
             font-size: 1.3rem;
             font-weight: 700;
-            color: #667eea;
+            color: #CC785C;
         }
 
         .diet-stat-label {
@@ -380,13 +382,12 @@
         }
 
         .btn-view {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: #CC785C;
             color: white;
         }
 
         .btn-view:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            background: #B8674C;
         }
 
         .btn-download {
@@ -423,7 +424,7 @@
 
         .empty-state h3 {
             font-size: 1.5rem;
-            color: #333;
+            color: #2C2C2C;
             margin-bottom: 0.5rem;
         }
 
@@ -442,7 +443,7 @@
             width: 50px;
             height: 50px;
             border: 4px solid #f3f3f3;
-            border-top: 4px solid #667eea;
+            border-top: 4px solid #CC785C;
             border-radius: 50%;
             animation: spin 1s linear infinite;
             margin: 0 auto 1rem;
@@ -485,7 +486,7 @@
         }
 
         .modal-header {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #2C2C2C 0%, #1F1F1F 100%);
             color: white;
             padding: 2rem;
             border-radius: 20px 20px 0 0;
@@ -530,20 +531,21 @@
         }
 
         .diet-detail-section h3 {
-            color: #667eea;
+            color: #CC785C;
             margin-bottom: 1rem;
             font-size: 1.3rem;
         }
 
         .meal-card {
-            background: #f8f9fa;
+            background: white;
             padding: 1.5rem;
             border-radius: 12px;
             margin-bottom: 1rem;
+            border: 1px solid #E5E5E5;
         }
 
         .meal-card h4 {
-            color: #333;
+            color: #2C2C2C;
             margin-bottom: 1rem;
             font-size: 1.1rem;
         }
@@ -612,7 +614,7 @@
     <header class="header">
         <div class="header-content">
             <a href="index.html" class="logo">
-                🧠 GymMind
+                GM
             </a>
             
             <nav>
@@ -712,7 +714,7 @@
             <!-- LOADING -->
             <div id="loadingState" class="loading" style="display: none;">
                 <div class="spinner"></div>
-                <p style="color: white;">Carregando suas dietas...</p>
+                <p style="color: #2C2C2C;">Carregando suas dietas...</p>
             </div>
 
             <!-- EMPTY STATE -->
